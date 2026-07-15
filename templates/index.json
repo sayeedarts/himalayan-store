@@ -566,6 +566,7 @@
         "img_2",
         "img_3"
       ],
+      "disabled": true,
       "settings": {
         "title": "More to Discover",
         "columns_desktop": 3,
