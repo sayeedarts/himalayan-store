@@ -9,9 +9,9 @@
  */
 {
   "current": {
-    "logo": "shopify://shop_images/logo.png",
+    "logo": "shopify://shop_images/HIMALAYAN_GARDEN_logo.png",
     "logo_width": 150,
-    "favicon": "shopify://shop_images/favicon.png",
+    "favicon": "shopify://shop_images/HIMALAYAN_GARDEN_logo.png",
     "sections": {
       "header": {
         "type": "header",
@@ -85,8 +85,7 @@
         ],
         "settings": {
           "show_social": true,
-          "logo_width": 150,
-          "payment_image": "shopify://shop_images/payment.png"
+          "logo_width": 150
         }
       },
       "cart-drawer": {
