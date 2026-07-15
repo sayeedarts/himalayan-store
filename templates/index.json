@@ -358,24 +358,6 @@
         "section_bg_color": ""
       }
     },
-    "global_heading_3YNMhF": {
-      "type": "global-heading",
-      "name": "Global Heading",
-      "settings": {
-        "heading": "Why Himalaya Garden",
-        "subheading": "Premium perfumes designed to elevate your everyday moments.",
-        "text_alignment": "text-center",
-        "text_color": "",
-        "subheading_color": "",
-        "heading_size": 32,
-        "subheading_size": 16,
-        "margin_desktop": "50px 0 30px 0",
-        "padding_desktop": "",
-        "margin_mobile": "",
-        "padding_mobile": "",
-        "section_bg_color": ""
-      }
-    },
     "himalayan_story": {
       "type": "himalayan-story",
       "blocks": {
@@ -486,6 +468,24 @@
         "section_bg_color": ""
       }
     },
+    "global_heading_3YNMhF": {
+      "type": "global-heading",
+      "name": "Global Heading",
+      "settings": {
+        "heading": "Why Himalaya Garden",
+        "subheading": "Premium perfumes designed to elevate your everyday moments.",
+        "text_alignment": "text-center",
+        "text_color": "",
+        "subheading_color": "",
+        "heading_size": 32,
+        "subheading_size": 16,
+        "margin_desktop": "50px 0 30px 0",
+        "padding_desktop": "",
+        "margin_mobile": "",
+        "padding_mobile": "",
+        "section_bg_color": ""
+      }
+    },
     "icon_box_grid": {
       "type": "icon-box-grid",
       "blocks": {
@@ -524,6 +524,7 @@
         "icon_3",
         "icon_box_3APfcT"
       ],
+      "disabled": true,
       "settings": {
         "columns_desktop": 4,
         "margin_desktop": "",
