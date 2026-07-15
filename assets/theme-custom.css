@@ -174,6 +174,88 @@ svg.icon.icon-magnifying-glass-light {
     width: 100%;
 }
 
+.theme-mode a.bd-theme {
+    display: none;
+}
+
+/* HERO */
+
+.hero-slider-section {
+    max-width: 1600px;
+    margin: 25px auto;
+    border-radius: 50px;
+    overflow: hidden;
+}
+
+
+/* SECTIONS */
+
+.featured-categories-section {
+    background: var(--bs-primary) !important;
+    border-radius: 50px;
+    padding: 50px;
+    color: #fff;
+    margin: 50px auto;
+}
+
+.featured-categories-section {
+    background: var(--bs-primary) !important;
+    border-radius: 50px;
+    padding: 50px;
+    color: #fff;
+    margin: 50px auto;
+}
+
+.featured-categories-section h2 {
+    color: #fff;
+}
+
+.featured-categories-section .card {
+    background: none;
+}
+
+.featured-categories-section .card .rounded-circle {
+    border-radius: 25px !important;
+}
+
+.featured-categories-section .card .rounded-circle img {
+    border-radius: 25px !important;
+}
+
+.featured-categories-section .card .image-box-1 {
+    max-width: 100% !important;
+    margin-bottom: 15px;
+}
+
+.featured-categories-section .card .card-body {
+    background: #fff;
+    border-radius: 20px;
+    padding: 25px !important;
+}
+
+.featured-categories-section .card .card-body h4 {
+    margin: 0px;
+}
+
+
+.featured-categories-section .card .card-body h4 span {
+    display: none;
+}
+
+/* PROMOTION */
+
+.promotion-grid-section .card {
+    border-radius: 25px !important;
+}
+
+
+.image-box-grid-section .image-box-4 {
+    border-radius: 25px !important
+}
+
+
+/* FOOTER */
+
 footer.footer {
     background: var(--color-secondary) !important;
     color: #fff;
