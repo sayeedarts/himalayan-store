@@ -327,6 +327,8 @@
       "type": "offer-banner",
       "name": "Offer Banner",
       "settings": {
+        "image_1": "shopify://shop_images/229632d8-f8fe-4940-9a52-7b8d88058eef.png",
+        "image_2": "shopify://shop_images/6a1941f0c5256.png",
         "subheading": "SPECIAL OFFER",
         "badge": "-20%",
         "heading": "Bergamot, Grapefruit, aromatic spicy, Sandalwood Musky",
