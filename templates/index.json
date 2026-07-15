@@ -376,53 +376,6 @@
         "section_bg_color": ""
       }
     },
-    "icon_box_grid": {
-      "type": "icon-box-grid",
-      "blocks": {
-        "icon_1": {
-          "type": "icon_box",
-          "settings": {
-            "title": "Free Shipping",
-            "text": "Free Shipping for orders over 499"
-          }
-        },
-        "icon_2": {
-          "type": "icon_box",
-          "settings": {
-            "title": "Returns",
-            "text": "Within 30 days for an exchange."
-          }
-        },
-        "icon_3": {
-          "type": "icon_box",
-          "settings": {
-            "title": "Online Support",
-            "text": "24 hours a day, 7 days a week"
-          }
-        },
-        "icon_box_3APfcT": {
-          "type": "icon_box",
-          "settings": {
-            "title": "Flexible Payment",
-            "text": "Pay with Multiple Credit Cards"
-          }
-        }
-      },
-      "block_order": [
-        "icon_1",
-        "icon_2",
-        "icon_3",
-        "icon_box_3APfcT"
-      ],
-      "settings": {
-        "columns_desktop": 4,
-        "margin_desktop": "",
-        "padding_desktop": "",
-        "margin_mobile": "",
-        "padding_mobile": "",
-        "section_bg_color": ""
-      }
-    },
     "himalayan_story": {
       "type": "himalayan-story",
       "blocks": {
@@ -533,6 +486,53 @@
         "section_bg_color": ""
       }
     },
+    "icon_box_grid": {
+      "type": "icon-box-grid",
+      "blocks": {
+        "icon_1": {
+          "type": "icon_box",
+          "settings": {
+            "title": "Free Shipping",
+            "text": "Free Shipping for orders over 499"
+          }
+        },
+        "icon_2": {
+          "type": "icon_box",
+          "settings": {
+            "title": "Returns",
+            "text": "Within 30 days for an exchange."
+          }
+        },
+        "icon_3": {
+          "type": "icon_box",
+          "settings": {
+            "title": "Online Support",
+            "text": "24 hours a day, 7 days a week"
+          }
+        },
+        "icon_box_3APfcT": {
+          "type": "icon_box",
+          "settings": {
+            "title": "Flexible Payment",
+            "text": "Pay with Multiple Credit Cards"
+          }
+        }
+      },
+      "block_order": [
+        "icon_1",
+        "icon_2",
+        "icon_3",
+        "icon_box_3APfcT"
+      ],
+      "settings": {
+        "columns_desktop": 4,
+        "margin_desktop": "",
+        "padding_desktop": "",
+        "margin_mobile": "",
+        "padding_mobile": "",
+        "section_bg_color": ""
+      }
+    },
     "image_box_grid": {
       "type": "image-box-grid",
       "blocks": {
@@ -588,10 +588,10 @@
     "featured_collection_Q7QbFi",
     "offer_banner_ifbtbL",
     "featured_collection_8pKE44",
-    "global_heading_3YNMhF",
-    "icon_box_grid",
     "himalayan_story",
     "testimonials",
+    "global_heading_3YNMhF",
+    "icon_box_grid",
     "image_box_grid"
   ]
 }
