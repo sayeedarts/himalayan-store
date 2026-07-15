@@ -69,7 +69,7 @@ svg.icon.icon-magnifying-glass-light {
 }
 
 .main-header.navbar {
-    background: var(--color-primary) !important;
+    background: white !important;
 }
 
 .main-header.navbar .nav-link {
