@@ -136,6 +136,7 @@
         "promo_1": {
           "type": "promotion",
           "settings": {
+            "image": "shopify://shop_images/8745f839-2514-4371-82fa-27c6608c9ca8.png",
             "title": "",
             "text": "",
             "button_label": "Shop Now",
@@ -145,6 +146,7 @@
         "promo_2": {
           "type": "promotion",
           "settings": {
+            "image": "shopify://shop_images/3d7ad513-3e13-4fdd-b91c-56e76b826642_19b9d957-5481-4f88-ae64-4eee3b88e77e.png",
             "title": "",
             "text": "",
             "button_label": "Discover Now",
@@ -154,6 +156,7 @@
         "promo_3": {
           "type": "promotion",
           "settings": {
+            "image": "shopify://shop_images/66f90dae-23a1-46c6-b82e-5777cdeba2ff.png",
             "title": "",
             "text": "",
             "button_label": "Discover Now",
