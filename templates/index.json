@@ -16,7 +16,7 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/Gemini_Generated_Image_aj3ad5aj3ad5aj3a.png",
-            "show_content": true,
+            "show_content": false,
             "text_alignment": "text-start",
             "content_bg_color": "#ffffff",
             "content_bg_opacity": 70,
@@ -33,7 +33,7 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/Gemini_Generated_Image_p7smmxp7smmxp7sm.png",
-            "show_content": true,
+            "show_content": false,
             "text_alignment": "text-start",
             "content_bg_color": "rgba(0,0,0,0)",
             "content_bg_opacity": 100,
