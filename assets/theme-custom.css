@@ -7,9 +7,11 @@
 
     --bs-primary: var(--color-primary) !important;
     --bs-secondary: var(--color-secondary) !important;
+    --bs-primary-rgb: 217, 42, 18 !important;
     --bs-body-bg: var(--color-background) !important;
     --bs-body-color: var(--color-text) !important;
     --bs-nav-link-text-color: var(--color-text);
+
 }
 
 [data-bs-theme="dark"] {
@@ -155,7 +157,7 @@ svg.icon.icon-magnifying-glass-light {
 }
 
 .card-product .card-img-top img {
-    max-height: 320px;
+    max-height: inherit;
 }
 
 .badge-product-flash.on-new {
