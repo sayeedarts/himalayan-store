@@ -429,6 +429,7 @@
         "story_1": {
           "type": "story_beat",
           "settings": {
+            "image": "shopify://shop_images/process_1.png",
             "title": "Hand-picked in the hills",
             "text": "<p>Our ingredients are carefully gathered at their peak potency by local farmers who understand the rhythm of the mountains.</p>"
           }
@@ -436,6 +437,7 @@
         "story_2": {
           "type": "story_beat",
           "settings": {
+            "image": "shopify://shop_images/Gemini_Generated_Image_w951msw951msw951.png",
             "title": "Traditional Recipes, No Shortcuts",
             "text": "<p>We preserve our harvests using traditional solar-drying and fermentation techniques passed down through generations.</p>"
           }
@@ -443,6 +445,7 @@
         "story_3": {
           "type": "story_beat",
           "settings": {
+            "image": "shopify://shop_images/process_3.png",
             "title": "Hygienically Processed",
             "text": "<p>Every batch is washed, processed, and packed in state-of-the-art sterile facilities to retain natural purity and freshness.</p>"
           }
@@ -450,6 +453,7 @@
         "story_4": {
           "type": "story_beat",
           "settings": {
+            "image": "shopify://shop_images/process_2.png",
             "title": "Delivered Fresh to You",
             "text": "<p>From mountain peak to your doorstep, we preserve nutrients and flavor so you get the genuine taste of the Himalayas.</p>"
           }
