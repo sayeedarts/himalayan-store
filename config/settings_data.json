@@ -12,6 +12,8 @@
     "logo": "shopify://shop_images/HIMALAYAN_GARDEN_logo.png",
     "logo_width": 150,
     "favicon": "shopify://shop_images/HIMALAYAN_GARDEN_logo.png",
+    "type_header_font": "outfit_n7",
+    "type_body_font": "inter_n4",
     "background_color": "#FDF8EF",
     "foreground_color": "#1C1C1A",
     "primary_color": "#ED3237",
@@ -20,8 +22,6 @@
     "tertiary_color": "#6FA84B",
     "accent_blue_color": "#91D8F7",
     "text_color": "#1C1C1A",
-    "type_header_font": "outfit_n7",
-    "type_body_font": "inter_n4",
     "sections": {
       "header": {
         "type": "header",
@@ -63,7 +63,7 @@
           "header_left_text": "Sourced from the Himalayas",
           "topbar_text": "Free shipping over ₹999",
           "show_announcement": true,
-          "announcement_bg_color": "#ED3237",
+          "announcement_bg_color": "#ed3237",
           "announcement_text_color": "#ffffff"
         }
       },
@@ -95,9 +95,9 @@
             "type": "contact",
             "settings": {
               "title": "Contact  Us",
-              "address_text": "123 Street Name, City, England",
-              "email_text": "mail@example.com",
-              "phone_text": "(123) 456-7890"
+              "address_text": "PLOT NO.47 & 48, MALOT INDUSTRIAL AREA, KANDRORI, TEHSIL- INDORA. DISTT- KANGRA. HP-176402.",
+              "email_text": "himalayannatural284@gmail.com",
+              "phone_text": "8837767569,7973050795"
             }
           }
         },
