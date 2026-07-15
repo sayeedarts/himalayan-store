@@ -201,7 +201,7 @@
         "cat_3": {
           "type": "category",
           "settings": {
-            "collection": "crushes",
+            "collection": "green-tea",
             "title": "Atta & Flours",
             "count": "",
             "link": ""
@@ -347,7 +347,7 @@
       "settings": {
         "title": "New Arrivals",
         "collection": "green-tea",
-        "limit": 8,
+        "limit": 6,
         "link_text": "Shop All Products",
         "link_url": "shopify://collections/all",
         "show_rating": true,
