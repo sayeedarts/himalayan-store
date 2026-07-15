@@ -493,6 +493,7 @@
         "icon_1": {
           "type": "icon_box",
           "settings": {
+            "image": "shopify://shop_images/transport.png",
             "title": "Free Shipping",
             "text": "Free Shipping for orders over 499"
           }
@@ -500,6 +501,7 @@
         "icon_2": {
           "type": "icon_box",
           "settings": {
+            "image": "shopify://shop_images/return.png",
             "title": "Returns",
             "text": "Within 30 days for an exchange."
           }
@@ -507,6 +509,7 @@
         "icon_3": {
           "type": "icon_box",
           "settings": {
+            "image": "shopify://shop_images/customer-service_1.png",
             "title": "Online Support",
             "text": "24 hours a day, 7 days a week"
           }
@@ -514,6 +517,7 @@
         "icon_box_3APfcT": {
           "type": "icon_box",
           "settings": {
+            "image": "shopify://shop_images/payment-card.png",
             "title": "Flexible Payment",
             "text": "Pay with Multiple Credit Cards"
           }
