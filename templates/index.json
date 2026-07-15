@@ -346,7 +346,7 @@
       "type": "featured-collection",
       "settings": {
         "title": "New Arrivals",
-        "collection": "best-sellers",
+        "collection": "green-tea",
         "limit": 8,
         "link_text": "Shop All Products",
         "link_url": "shopify://collections/all",
