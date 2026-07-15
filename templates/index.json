@@ -32,16 +32,17 @@
         "slide_2": {
           "type": "slide",
           "settings": {
+            "image": "shopify://shop_images/Gemini_Generated_Image_p7smmxp7smmxp7sm.png",
             "show_content": true,
             "text_alignment": "text-start",
             "content_bg_color": "rgba(0,0,0,0)",
             "content_bg_opacity": 100,
             "heading_color": "",
             "text_color": "",
-            "title": "Pure Wellness from<br>the Himalayan Peaks",
-            "text": "Savor our curated range of organic millet flours, wellness teas, and natural jaggery powder.",
-            "subtext": "No Artificial Preservatives",
-            "button_label": "Discover More",
+            "title": "",
+            "text": "",
+            "subtext": "",
+            "button_label": "",
             "button_link": "shopify://collections/all"
           }
         }
