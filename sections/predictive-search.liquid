@@ -1,0 +1,33 @@
+{%- if predictive_search.performed -%}
+  <div id="predictive-search-results-list">
+    {%- if predictive_search.resources.products.size > 0 -%}
+      <div class="search-results-list">
+        {%- for product in predictive_search.resources.products -%}
+          <div class="d-flex align-items-center mb-6">
+            <a href="{{ product.url }}" class="flex-shrink-0 me-4">
+              {%- if product.featured_media != blank -%}
+                {{
+                  product.featured_media
+                  | image_url: width: 80, height: 80
+                  | image_tag: class: 'rounded object-fit-cover', width: 80, height: 80
+                }}
+              {%- endif -%}
+            </a>
+            <div>
+              <h6 class="mb-1 text-body-emphasis fw-semibold font-primary fs-15px">
+                <a href="{{ product.url }}" class="text-decoration-none text-reset">{{ product.title }}</a>
+              </h6>
+              {%- if product.price_varies -%}
+                <p class="mb-0 text-muted fs-14px">From {{ product.price_min | money }}</p>
+              {%- else -%}
+                <p class="mb-0 text-muted fs-14px">{{ product.price | money }}</p>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- else -%}
+      <p class="text-center text-muted">No results found for "{{ predictive_search.terms }}".</p>
+    {%- endif -%}
+  </div>
+{%- endif -%}

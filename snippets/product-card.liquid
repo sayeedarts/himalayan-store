@@ -1,0 +1,137 @@
+{% comment %}
+  Renders a product card
+  Accepts:
+  - product: {Object} Product Liquid object
+  - show_rating: {Boolean} Show rating stars
+  - class: {String} Additional classes
+{% endcomment %}
+
+<div
+  class="card card-product grid-1 bg-transparent border-0 {{ class }} {% unless product.available %}sold-out{% endunless %}"
+  {% unless animate == false %}
+    data-animate="fadeInUp"
+  {% endunless %}
+>
+  <figure class="card-img-top position-relative mb-7 overflow-hidden">
+    <a href="{{ product.url }}" class="hover-zoom-in d-block" title="{{ product.title }}">
+      {% if product.featured_image != blank %}
+        {{
+          product.featured_image
+          | image_url: width: 330
+          | image_tag: class: 'img-fluid lazy-image w-100', loading: 'lazy', alt: product.title
+        }}
+      {% else %}
+        {{ 'product-1' | placeholder_svg_tag: 'img-fluid w-100' }}
+      {% endif %}
+    </a>
+
+    {% liquid
+      assign date_created = product.created_at | date: '%s' | plus: 0
+      assign now_timestamp = 'now' | date: '%s' | plus: 0
+      assign new_threshold = now_timestamp | minus: 604800
+    %}
+    {% if product.available == false %}
+      <div class="position-absolute product-flash z-index-2">
+        <span class="badge badge-product-flash on-sale bg-secondary">
+          {{ 'products.product.sold_out' | t }}
+        </span>
+      </div>
+    {% elsif product.compare_at_price > product.price %}
+      <div class="position-absolute product-flash z-index-2">
+        <span class="badge badge-product-flash on-sale bg-primary">
+          -
+          {{-
+            product.compare_at_price
+            | minus: product.price
+            | times: 100.0
+            | divided_by: product.compare_at_price
+            | round
+          -}}
+          %
+        </span>
+      </div>
+    {% elsif date_created > new_threshold %}
+      <div class="position-absolute product-flash z-index-2">
+        <span class="badge badge-product-flash on-new">New</span>
+      </div>
+    {% endif %}
+
+    <div class="position-absolute d-flex z-index-2 product-actions horizontal">
+      {% if product.available %}
+        <a
+          class="text-body-emphasis bg-body bg-dark-hover text-light-hover rounded-circle square product-action shadow-sm add_to_cart"
+          href="#"
+          data-bs-toggle="tooltip"
+          data-bs-placement="top"
+          data-bs-title="Add To Cart"
+          data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+        >
+          <svg class="icon icon-shopping-cart">
+            <use xlink:href="#icon-shopping-cart"></use>
+          </svg>
+        </a>
+      {% endif %}
+      <a
+        class="text-body-emphasis bg-body bg-dark-hover text-light-hover rounded-circle square product-action shadow-sm quick-view"
+        href="#"
+        data-bs-toggle="modal"
+        data-bs-target="#quickViewModal"
+        data-bs-placement="top"
+        data-bs-title="Quick View"
+        data-product-url="{{ product.url }}"
+      >
+        <span
+          class="d-flex align-items-center justify-content-center"
+        >
+          <svg class="icon icon-eye-light">
+            <use xlink:href="#icon-eye-light"></use>
+          </svg>
+        </span>
+      </a>
+      <a
+        class="text-body-emphasis bg-body bg-dark-hover text-light-hover rounded-circle square product-action shadow-sm wishlist"
+        href="#"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        data-bs-title="Add To Wishlist"
+        data-product-handle="{{ product.handle }}"
+      >
+        <svg class="icon icon-star-light">
+          <use xlink:href="#icon-star-light"></use>
+        </svg>
+      </a>
+    </div>
+  </figure>
+  <div class="card-body text-center p-0">
+    <span class="d-flex align-items-center price text-body-emphasis fw-bold justify-content-center mb-3 fs-6">
+      {% if product.compare_at_price > product.price %}
+        <del class="text-body fw-500 me-4 fs-13px">{{ product.compare_at_price | money }}</del>
+        <ins class="text-decoration-none">{{ product.price | money }}</ins>
+      {% else %}
+        {{ product.price | money }}
+      {% endif %}
+    </span>
+
+    <h4 class="product-title card-title text-primary-hover text-body-emphasis fs-15px fw-500 mb-3">
+      <a class="text-decoration-none text-reset" href="{{ product.url }}">{{ product.title }}</a>
+    </h4>
+
+    {% if show_rating %}
+      <div class="d-flex align-items-center fs-12px justify-content-center">
+        <!-- Placeholder rating implementation -->
+        <div class="rating">
+          <div class="filled-stars" style="width: 100%">
+            {% for i in (1..5) %}
+              <span class="star">
+                <svg class="icon star text-primary">
+                  <use xlink:href="#icon-star-light"></use>
+                </svg>
+              </span>
+            {% endfor %}
+          </div>
+        </div>
+        <span class="reviews ms-4 pt-3 fs-14px">0 reviews</span>
+      </div>
+    {% endif %}
+  </div>
+</div>

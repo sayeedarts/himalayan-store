@@ -1,0 +1,230 @@
+{% render 'section-style' %}
+<section
+  class="container container-xxl pt-14 pt-lg-17 featured-categories-section"
+  id="shopify-section-{{ section.id }}"
+>
+  <div class="mb-lg-13 mb-7">
+    <div class="text-center">
+      {% if section.settings.heading != blank %}
+        <h2 class="mb-6">{{ section.settings.heading }}</h2>
+      {% endif %}
+      {% if section.settings.subheading != blank %}
+        <p class="fs-18px mb-0">{{ section.settings.subheading }}</p>
+      {% endif %}
+    </div>
+  </div>
+  <div class="row">
+    {% for block in section.blocks %}
+      {% liquid
+        assign collection = block.settings.collection
+        assign item_title = block.settings.title | default: collection.title
+        assign item_link = block.settings.link | default: collection.url
+        assign item_count = block.settings.count | default: collection.all_products_count
+
+        assign item_image = block.settings.image | default: collection.featured_image
+        assign item_image_dark = block.settings.image_dark | default: item_image
+      %}
+      <div class="col-lg-2 col-md-4 col-sm-6 mt-lg-0 mt-10" {{ block.shopify_attributes }}>
+        <div class="card border-0 fw-semibold">
+          <a
+            href="{{ item_link }}"
+            class="rounded-circle mx-auto hover-zoom-in w-100 image-box-1"
+            style="max-width: 160px; display: block;"
+          >
+            {% if item_image != blank %}
+              {{
+                item_image
+                | image_url: width: 320
+                | image_tag: class: 'lazy-image img-fluid card-img light-mode-img', loading: 'lazy', alt: item_title
+              }}
+              {{
+                item_image_dark
+                | default: item_image
+                | image_url: width: 320
+                | image_tag: class: 'lazy-image dark-mode-img img-fluid card-img', loading: 'lazy', alt: item_title
+              }}
+            {% else %}
+              {{ 'collection-1' | placeholder_svg_tag: 'img-fluid card-img rounded-circle' }}
+            {% endif %}
+          </a>
+          <div class="card-body pt-9 pb-0 d-flex justify-content-center px-0">
+            <h4 class="fs-5 text-center position-relative">
+              <a href="{{ item_link }}" class="text-decoration-none">{{ item_title }}</a>
+              {% if item_count != blank %}
+                <span class="fw-bold fs-14px position-absolute top-0 me-n6 mt-n3 end-0 top-50 translate-middle-y">
+                  {{ item_count }}
+                </span>
+              {% endif %}
+            </h4>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured Categories",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Our Picks for You"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Our products are designed for everyone."
+    },
+    {
+      "type": "header",
+      "content": "Custom Styling"
+    },
+    {
+      "type": "header",
+      "content": "Spacing Setting"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Spacing"
+    },
+    {
+      "type": "text",
+      "id": "margin_desktop",
+      "label": "Margin",
+      "info": "Format: top right bottom left (e.g. 10px 0 10px 0)"
+    },
+    {
+      "type": "text",
+      "id": "padding_desktop",
+      "label": "Padding",
+      "info": "Format: top right bottom left (e.g. 10px 0 10px 0)"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Spacing"
+    },
+    {
+      "type": "text",
+      "id": "margin_mobile",
+      "label": "Margin",
+      "info": "Format: top right bottom left (e.g. 10px 0 10px 0)"
+    },
+    {
+      "type": "text",
+      "id": "padding_mobile",
+      "label": "Padding",
+      "info": "Format: top right bottom left (e.g. 10px 0 10px 0)"
+    },
+    {
+      "type": "header",
+      "content": "Background Setting"
+    },
+    {
+      "type": "color",
+      "id": "section_bg_color",
+      "label": "Background Color"
+    },
+    {
+      "type": "image_picker",
+      "id": "section_bg_image",
+      "label": "Background Image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Custom Image (Light/Default)",
+          "info": "Overrides collection image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_dark",
+          "label": "Custom Image (Dark Mode)",
+          "info": "Overrides collection image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Custom Title",
+          "info": "Overrides collection title"
+        },
+        {
+          "type": "text",
+          "id": "count",
+          "label": "Custom Item Count (Badge)",
+          "info": "Overrides collection product count"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Custom Link",
+          "info": "Overrides collection link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Categories",
+      "blocks": [
+        {
+          "type": "category",
+          "settings": {
+            "title": "Oil Cleansers",
+            "count": "12"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "title": "Skin Care",
+            "count": "8"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "title": "Body Care",
+            "count": "15"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "title": "Hair Care",
+            "count": "5"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "title": "Accessories",
+            "count": "20"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "title": "Gifts",
+            "count": "3"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

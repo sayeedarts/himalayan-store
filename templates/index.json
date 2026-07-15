@@ -1,0 +1,488 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "hero-slider",
+      "blocks": {
+        "slide_1": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/hf_20260126_160240_3e863dd7-3aac-4f68-b356-31951f0fc650.jpg",
+            "show_content": false,
+            "text_alignment": "text-start",
+            "content_bg_color": "#ffffff",
+            "content_bg_opacity": 70,
+            "heading_color": "rgba(0,0,0,0)",
+            "text_color": "rgba(0,0,0,0)",
+            "title": "Reveal The<br>Beauty of Skin",
+            "text": "Made using clean, non-toxic ingredients, our products are designed for everyone.",
+            "subtext": "Starting at $7.99",
+            "button_label": "Shop Now",
+            "button_link": "shopify://collections/all"
+          }
+        },
+        "slide_2": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/hf_20260126_164608_f1401f6f-89fd-43cb-b846-d549a2b81a0b.jpg",
+            "image_dark": "shopify://shop_images/upscalemedia-transformed.png",
+            "show_content": true,
+            "text_alignment": "text-start",
+            "content_bg_color": "rgba(0,0,0,0)",
+            "content_bg_opacity": 100,
+            "heading_color": "",
+            "text_color": "",
+            "title": "A Signature of Sophistication",
+            "text": "Discover fragrances designed for those who demand excellence.",
+            "subtext": "Starting at $7.99",
+            "button_label": "Shop Now",
+            "button_link": "shopify://collections/all"
+          }
+        }
+      },
+      "block_order": [
+        "slide_1",
+        "slide_2"
+      ],
+      "settings": {
+        "autoplay": true,
+        "slider_max_height": "800px",
+        "page_width": "full_width",
+        "speed": 1000,
+        "show_dots": true,
+        "margin_desktop": "",
+        "padding_desktop": "",
+        "margin_mobile": "",
+        "padding_mobile": "",
+        "section_bg_color": ""
+      }
+    },
+    "promotion_grid": {
+      "type": "promotion-grid",
+      "blocks": {
+        "promo_1": {
+          "type": "promotion",
+          "settings": {
+            "image": "shopify://shop_images/hf_20260127_154052_5c86a642-c580-4da2-bcad-e4a4c974e0c8.png",
+            "title": "",
+            "text": "",
+            "button_label": "Shop Now",
+            "link": "shopify://collections/all"
+          }
+        },
+        "promo_2": {
+          "type": "promotion",
+          "settings": {
+            "image": "shopify://shop_images/hf_20260127_154040_2fdcb30a-8677-4704-a74a-cb03f6523ea6.jpg",
+            "title": "",
+            "text": "",
+            "button_label": "Discover Now",
+            "link": "shopify://collections/all"
+          }
+        },
+        "promo_3": {
+          "type": "promotion",
+          "settings": {
+            "image": "shopify://shop_images/hf_20260127_155351_51b7a5b7-07a5-4f66-b0e7-b621e8d5b2e2.jpg",
+            "title": "",
+            "text": "",
+            "button_label": "Discover Now",
+            "link": "shopify://collections/all"
+          }
+        }
+      },
+      "block_order": [
+        "promo_1",
+        "promo_2",
+        "promo_3"
+      ],
+      "settings": {
+        "margin_desktop": "",
+        "padding_desktop": "",
+        "margin_mobile": "",
+        "padding_mobile": "",
+        "section_bg_color": ""
+      }
+    },
+    "featured_categories_XGn64L": {
+      "type": "featured-categories",
+      "blocks": {
+        "category_VpfhUx": {
+          "type": "category",
+          "settings": {
+            "collection": "floral",
+            "title": "",
+            "count": "",
+            "link": ""
+          }
+        },
+        "category_HVRVWN": {
+          "type": "category",
+          "settings": {
+            "collection": "dark-wood-textures-and-forest-light-copy",
+            "title": "",
+            "count": "",
+            "link": ""
+          }
+        },
+        "category_WGLtCh": {
+          "type": "category",
+          "settings": {
+            "collection": "spicy-copy",
+            "title": "",
+            "count": "",
+            "link": ""
+          }
+        },
+        "category_gPaUrx": {
+          "type": "category",
+          "settings": {
+            "collection": "oriental-copy",
+            "title": "",
+            "count": "",
+            "link": ""
+          }
+        },
+        "category_EJ9QGX": {
+          "type": "category",
+          "settings": {
+            "collection": "floral-copy",
+            "title": "",
+            "count": "",
+            "link": ""
+          }
+        },
+        "category_nnrDnE": {
+          "type": "category",
+          "settings": {
+            "collection": "oud-copy",
+            "title": "Smokey",
+            "count": "3",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "category_VpfhUx",
+        "category_HVRVWN",
+        "category_WGLtCh",
+        "category_gPaUrx",
+        "category_EJ9QGX",
+        "category_nnrDnE"
+      ],
+      "name": "Featured Categories",
+      "settings": {
+        "heading": "Our Picks for You",
+        "subheading": "Our products are designed for everyone.",
+        "margin_desktop": "",
+        "padding_desktop": "",
+        "margin_mobile": "",
+        "padding_mobile": "",
+        "section_bg_color": ""
+      }
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Our Bestsellers",
+        "collection": "best-sellers",
+        "limit": 8,
+        "link_text": "Shop All Products",
+        "link_url": "shopify://collections/all",
+        "show_rating": true,
+        "margin_desktop": "",
+        "padding_desktop": "",
+        "margin_mobile": "",
+        "padding_mobile": "",
+        "section_bg_color": ""
+      }
+    },
+    "image_box_grid_xNh6YR": {
+      "type": "image-box-grid",
+      "blocks": {
+        "image_box_cPXF6Y": {
+          "type": "image_box",
+          "settings": {
+            "image": "shopify://shop_images/unwatermarked_Gemini_Generated_Image_90ztxx90ztxx90zt.png",
+            "heading": "",
+            "link_text": "",
+            "link": "#"
+          }
+        },
+        "image_box_W9E7Uk": {
+          "type": "image_box",
+          "settings": {
+            "image": "shopify://shop_images/PixelBin-AI-Editor-1769769120608.png",
+            "heading": "",
+            "link_text": "",
+            "link": "#"
+          }
+        }
+      },
+      "block_order": [
+        "image_box_cPXF6Y",
+        "image_box_W9E7Uk"
+      ],
+      "name": "Image Box Grid",
+      "settings": {
+        "title": "",
+        "columns_desktop": 2,
+        "margin_desktop": "0px 0px -120px 0px",
+        "padding_desktop": "0px 0px 0px 0px",
+        "margin_mobile": "",
+        "padding_mobile": "",
+        "section_bg_color": ""
+      }
+    },
+    "featured_collection_Q7QbFi": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Trending Now",
+        "collection": "best-sellers",
+        "limit": 8,
+        "link_text": "Shop All Products",
+        "link_url": "shopify://collections/all",
+        "show_rating": true,
+        "margin_desktop": "",
+        "padding_desktop": "",
+        "margin_mobile": "",
+        "padding_mobile": "",
+        "section_bg_color": ""
+      }
+    },
+    "offer_banner_ifbtbL": {
+      "type": "offer-banner",
+      "name": "Offer Banner",
+      "settings": {
+        "image_1": "shopify://shop_images/hf_20260129_135523_89528286-9b15-4d34-bbe0-d2f9cf4554d2.png",
+        "image_2": "shopify://shop_images/hf_20260129_140432_2f9aaff0-1250-4cb9-afe2-d452480a5e30.png",
+        "subheading": "SPECIAL OFFER",
+        "badge": "-20%",
+        "heading": "Bergamot, Grapefruit, aromatic spicy, Sandalwood Musky",
+        "text": "Made using clean, non-toxic ingredients, our products are designed for everyone.",
+        "button_label": "Get Only 599.00",
+        "button_link": "",
+        "margin_desktop": "",
+        "padding_desktop": "",
+        "margin_mobile": "",
+        "padding_mobile": "",
+        "section_bg_color": ""
+      }
+    },
+    "featured_collection_8pKE44": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "New Arrivals",
+        "collection": "best-sellers",
+        "limit": 8,
+        "link_text": "Shop All Products",
+        "link_url": "shopify://collections/all",
+        "show_rating": true,
+        "margin_desktop": "",
+        "padding_desktop": "",
+        "margin_mobile": "",
+        "padding_mobile": "",
+        "section_bg_color": ""
+      }
+    },
+    "global_heading_3YNMhF": {
+      "type": "global-heading",
+      "name": "Global Heading",
+      "settings": {
+        "heading": "Why Perfume Factory",
+        "subheading": "Premium perfumes designed to elevate your everyday moments.",
+        "text_alignment": "text-center",
+        "text_color": "",
+        "subheading_color": "",
+        "heading_size": 32,
+        "subheading_size": 16,
+        "margin_desktop": "50px 0 30px 0",
+        "padding_desktop": "",
+        "margin_mobile": "",
+        "padding_mobile": "",
+        "section_bg_color": ""
+      }
+    },
+    "icon_box_grid": {
+      "type": "icon-box-grid",
+      "blocks": {
+        "icon_1": {
+          "type": "icon_box",
+          "settings": {
+            "image": "shopify://shop_images/icon-box-01.svg",
+            "title": "Free Shipping",
+            "text": "Free Shipping for orders over 499"
+          }
+        },
+        "icon_2": {
+          "type": "icon_box",
+          "settings": {
+            "image": "shopify://shop_images/icon-box-02.svg",
+            "title": "Returns",
+            "text": "Within 30 days for an exchange."
+          }
+        },
+        "icon_3": {
+          "type": "icon_box",
+          "settings": {
+            "image": "shopify://shop_images/icon-box-03.svg",
+            "title": "Online Support",
+            "text": "24 hours a day, 7 days a week"
+          }
+        },
+        "icon_box_3APfcT": {
+          "type": "icon_box",
+          "settings": {
+            "image": "shopify://shop_images/icon-box-04.svg",
+            "title": "Flexible Payment",
+            "text": "Pay with Multiple Credit Cards"
+          }
+        }
+      },
+      "block_order": [
+        "icon_1",
+        "icon_2",
+        "icon_3",
+        "icon_box_3APfcT"
+      ],
+      "settings": {
+        "columns_desktop": 4,
+        "margin_desktop": "",
+        "padding_desktop": "",
+        "margin_mobile": "",
+        "padding_mobile": "",
+        "section_bg_color": ""
+      }
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "blocks": {
+        "testim_1": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Millions of combinations, meaning you get a totally unique piece of furniture exactly the way you want it."
+          }
+        },
+        "testim_2": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Great tags, Millie has got used to it, nothing like the old tin tags of years gone by. Light weight and great colours available."
+          }
+        },
+        "testim_3": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Amazing product. The results are so transformative in texture and my face feels plump and healthy. Highly recommend!"
+          }
+        },
+        "testim_4": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Millions of combinations, meaning you get a totally unique piece of furniture exactly the way you want it."
+          }
+        },
+        "testim_5": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Great tags, Millie has got used to it, nothing like the old tin tags of years gone by. Light weight and great colours available."
+          }
+        },
+        "testim_6": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Millions of combinations, meaning you get a totally unique piece of furniture exactly the way you want it."
+          }
+        }
+      },
+      "block_order": [
+        "testim_1",
+        "testim_2",
+        "testim_3",
+        "testim_4",
+        "testim_5",
+        "testim_6"
+      ],
+      "settings": {
+        "heading": "Loved by our Community",
+        "subheading": "Fragnance that earns your trust, one review at a time",
+        "heading_color": "",
+        "subheading_color": "",
+        "heading_size": 48,
+        "subheading_size": 16,
+        "margin_desktop": "",
+        "padding_desktop": "",
+        "margin_mobile": "",
+        "padding_mobile": "",
+        "section_bg_color": ""
+      }
+    },
+    "image_box_grid": {
+      "type": "image-box-grid",
+      "blocks": {
+        "img_1": {
+          "type": "image_box",
+          "settings": {
+            "image": "shopify://shop_images/store.jpg",
+            "heading": "Find a Store",
+            "link_text": "Our Store",
+            "link": "shopify://pages/store"
+          }
+        },
+        "img_2": {
+          "type": "image_box",
+          "settings": {
+            "image": "shopify://shop_images/unwatermarked_Gemini_Generated_Image_ibrqbgibrqbgibrq.png",
+            "heading": "From Our Blog",
+            "link_text": "Read more",
+            "link": "shopify://blogs/news"
+          }
+        },
+        "img_3": {
+          "type": "image_box",
+          "settings": {
+            "image": "shopify://shop_images/unwatermarked_Gemini_Generated_Image_qh08y3qh08y3qh08.png",
+            "heading": "Our Story",
+            "link_text": "View More",
+            "link": "shopify://pages/about-us"
+          }
+        }
+      },
+      "block_order": [
+        "img_1",
+        "img_2",
+        "img_3"
+      ],
+      "settings": {
+        "title": "More to Discover",
+        "columns_desktop": 3,
+        "margin_desktop": "",
+        "padding_desktop": "",
+        "margin_mobile": "",
+        "padding_mobile": "",
+        "section_bg_color": ""
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "promotion_grid",
+    "featured_categories_XGn64L",
+    "featured_collection",
+    "image_box_grid_xNh6YR",
+    "featured_collection_Q7QbFi",
+    "offer_banner_ifbtbL",
+    "featured_collection_8pKE44",
+    "global_heading_3YNMhF",
+    "icon_box_grid",
+    "testimonials",
+    "image_box_grid"
+  ]
+}

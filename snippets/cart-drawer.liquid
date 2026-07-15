@@ -1,0 +1,99 @@
+<div id="shoppingCart" data-bs-scroll="false" class="offcanvas offcanvas-end">
+  <div class="offcanvas-header fs-4">
+    <h4 class="offcanvas-title fw-semibold">Shopping Bag</h4>
+    <button type="button" class="btn-close btn-close-bg-none" data-bs-dismiss="offcanvas" aria-label="Close">
+      <i class="far fa-times"></i>
+    </button>
+  </div>
+  <div class="offcanvas-body me-xl-auto pt-0 mb-2 mb-xl-0">
+    <form
+      action="{{ routes.cart_url }}"
+      method="post"
+      novalidate
+      class="table-responsive-md shopping-cart pb-8 pb-lg-10"
+    >
+      <table class="table table-borderless">
+        <thead>
+          <tr class="fw-500">
+            <td colspan="3" class="border-bottom pb-6">
+              <i class="far fa-check fs-12px border me-4 px-2 py-1 text-body-emphasis border-dark rounded-circle"></i>
+              Your cart is saved for the next <span class="text-body-emphasis">4m34s</span>
+            </td>
+          </tr>
+        </thead>
+        <tbody>
+          {% if cart.item_count > 0 %}
+            {% for item in cart.items %}
+              <tr class="position-relative">
+                <td class="align-middle text-center">
+                  <a href="{{ item.url_to_remove }}" class="d-block clear-product">
+                    <i class="far fa-times"></i>
+                  </a>
+                </td>
+                <td class="shop-product">
+                  <div class="d-flex align-items-center">
+                    <div class="me-6">
+                      {% if item.image %}
+                        <img
+                          src="{{ item.image | image_url: width: 75 }}"
+                          width="60"
+                          height="80"
+                          alt="{{ item.image.alt | escape }}"
+                        >
+                      {% endif %}
+                    </div>
+                    <div class="">
+                      <p class="card-text mb-1">
+                        {% if item.original_price != item.final_price %}
+                          <span class="fs-13px fw-500 text-decoration-line-through pe-3">
+                            {{- item.original_price | money -}}
+                          </span>
+                        {% endif %}
+                        <span class="fs-15px fw-bold text-body-emphasis">{{ item.final_price | money }}</span>
+                      </p>
+                      <p class="fw-500 text-body-emphasis">
+                        <a href="{{ item.url }}" class="text-decoration-none text-body-emphasis">
+                          {{- item.product.title -}}
+                        </a>
+                      </p>
+                      {% unless item.product.has_only_default_variant %}
+                        <p class="mb-0 fs-13px text-muted">{{ item.variant.title }}</p>
+                      {% endunless %}
+                    </div>
+                  </div>
+                </td>
+                <td class="align-middle p-0">
+                  <div class="input-group position-relative shop-quantity">
+                    <a href="#" class="shop-down position-absolute z-index-2"><i class="far fa-minus"></i></a>
+                    <input
+                      name="updates[]"
+                      type="number"
+                      class="form-control form-control-sm px-6 py-4 fs-6 text-center border-0"
+                      value="{{ item.quantity }}"
+                      required
+                    >
+                    <a href="#" class="shop-up position-absolute z-index-2"><i class="far fa-plus"></i> </a>
+                  </div>
+                </td>
+              </tr>
+            {% endfor %}
+          {% else %}
+            <tr>
+              <td colspan="3" class="text-center py-10">
+                <p class="mb-0">Your cart is empty.</p>
+              </td>
+            </tr>
+          {% endif %}
+        </tbody>
+      </table>
+    </form>
+  </div>
+  <div class="offcanvas-footer flex-wrap">
+    <div class="d-flex align-items-center justify-content-between w-100 mb-5">
+      <span class="text-body-emphasis">Subtotal:</span>
+      <span class="cart-total fw-bold text-body-emphasis">{{ cart.total_price | money }}</span>
+    </div>
+    <a href="{{ routes.cart_url }}" class="btn btn-dark w-100 mb-7">View Cart</a>
+    <a href="checkout.html" class="btn btn-outline-dark w-100">Checkout</a>
+  </div>
+</div>

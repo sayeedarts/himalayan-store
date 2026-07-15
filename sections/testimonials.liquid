@@ -1,0 +1,262 @@
+{% render 'section-style' %}
+<section id="with_client_logo_2" class="testimonials-section">
+  <div class="container-xxl">
+    <div class="bg-body-tertiary">
+      <div class="container pt-14 pb-16 py-lg-17">
+        <div class="row mb-15">
+          <div class="col-12 text-center" data-animate="fadeInUp">
+            {% if section.settings.heading != blank %}
+              <h3
+                class="mb-5"
+                style="{% if section.settings.heading_color != blank and section.settings.heading_color != 'rgba(0,0,0,0)' %}color: {{ section.settings.heading_color }};{% endif %} font-size: {{ section.settings.heading_size }}px;"
+              >
+                {{ section.settings.heading }}
+              </h3>
+            {% endif %}
+            {% if section.settings.subheading != blank %}
+              <div
+                class="section-subheading"
+                style="{% if section.settings.subheading_color != blank and section.settings.subheading_color != 'rgba(0,0,0,0)' %}color: {{ section.settings.subheading_color }};{% endif %} font-size: {{ section.settings.subheading_size }}px;"
+              >
+                {{ section.settings.subheading }}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+        <div class="row mt-4 mb-15" data-animate="fadeInUp">
+          <div class="col-lg-9 offset-lg-1 col-xl-8 offset-xl-2">
+            <div class="swiper testimonials-main-swiper text-center">
+              <div class="swiper-wrapper">
+                {% for block in section.blocks %}
+                  <div class="swiper-slide" {{ block.shopify_attributes }}>
+                    <h4 class="mb-0">"{{ block.settings.quote }}"</h4>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="swiper testimonials-thumb-swiper px-5">
+          <div class="swiper-wrapper align-items-center">
+            {% for block in section.blocks %}
+              <div class="swiper-slide client-logo-item text-center cursor-pointer" data-animate="fadeInUp">
+                {% if block.settings.logo != blank %}
+                  {{
+                    block.settings.logo
+                    | image_url: width: 150
+                    | image_tag:
+                      class: 'lazy-image w-auto mx-auto opacity-30 light-mode-img transition-opacity',
+                      loading: 'lazy'
+                  }}
+                  {{
+                    block.settings.logo_dark
+                    | default: block.settings.logo
+                    | image_url: width: 150
+                    | image_tag:
+                      class: 'lazy-image dark-mode-img w-auto mx-auto opacity-30 transition-opacity',
+                      loading: 'lazy'
+                  }}
+                {% endif %}
+              </div>
+            {% endfor %}
+          </div>
+          <div class="swiper-pagination mt-5 position-relative"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonials-thumb-swiper .swiper-slide-thumb-active .opacity-30 {
+    opacity: 1 !important;
+  }
+  .client-logo-item img {
+    transition: opacity 0.3s ease;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var testimonialMain = new Swiper('.testimonials-main-swiper', {
+      spaceBetween: 10,
+      slidesPerView: 1,
+      freeMode: false,
+      watchSlidesProgress: true,
+      allowTouchMove: false,
+    });
+
+    var testimonialThumb = new Swiper('.testimonials-thumb-swiper', {
+      spaceBetween: 10,
+      slidesPerView: 2,
+      centeredSlides: true,
+      loop: true,
+      slideToClickedSlide: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      thumbs: {
+        swiper: testimonialMain,
+      },
+      breakpoints: {
+        576: { slidesPerView: 3 },
+        768: { slidesPerView: 4 },
+        992: { slidesPerView: 6 },
+      },
+      on: {
+        slideChange: function () {
+          testimonialMain.slideTo(this.realIndex);
+        },
+      },
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Title"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Testimonials"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color"
+    },
+    {
+      "type": "color",
+      "id": "subheading_color",
+      "label": "Subheading Color"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 10,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading Font Size",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "subheading_size",
+      "min": 10,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Subheading Font Size",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Custom Styling"
+    },
+    {
+      "type": "header",
+      "content": "Spacing Setting"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Spacing"
+    },
+    {
+      "type": "text",
+      "id": "margin_desktop",
+      "label": "Margin",
+      "info": "Format: top right bottom left (e.g. 10px 0 10px 0)"
+    },
+    {
+      "type": "text",
+      "id": "padding_desktop",
+      "label": "Padding",
+      "info": "Format: top right bottom left (e.g. 10px 0 10px 0)"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Spacing"
+    },
+    {
+      "type": "text",
+      "id": "margin_mobile",
+      "label": "Margin",
+      "info": "Format: top right bottom left (e.g. 10px 0 10px 0)"
+    },
+    {
+      "type": "text",
+      "id": "padding_mobile",
+      "label": "Padding",
+      "info": "Format: top right bottom left (e.g. 10px 0 10px 0)"
+    },
+    {
+      "type": "header",
+      "content": "Background Setting"
+    },
+    {
+      "type": "color",
+      "id": "section_bg_color",
+      "label": "Background Color"
+    },
+    {
+      "type": "image_picker",
+      "id": "section_bg_image",
+      "label": "Background Image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote",
+          "default": "Millions of combinations, meaning you get a totally unique piece of furniture exactly the way you want it."
+        },
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Client Logo (Light)"
+        },
+        {
+          "type": "image_picker",
+          "id": "logo_dark",
+          "label": "Client Logo (Dark)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials",
+      "blocks": [
+        {
+          "type": "testimonial"
+        },
+        {
+          "type": "testimonial"
+        },
+        {
+          "type": "testimonial"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

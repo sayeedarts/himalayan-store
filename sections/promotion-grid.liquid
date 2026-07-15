@@ -1,0 +1,204 @@
+{% render 'section-style' %}
+<section class="pt-lg-16 pt-14 promotion-grid-section">
+  <div class="container container-xxl">
+    <div class="row gy-30px gx-30px">
+      {% for block in section.blocks %}
+        <div class="col-12 col-lg-4" {{ block.shopify_attributes }} data-animate="fadeInUp">
+          <div class="card border-0 rounded-0 hover-zoom-in hover-shine">
+            {% if block.settings.image != blank %}
+              {{
+                block.settings.image
+                | image_url: width: 450
+                | image_tag:
+                  class: 'lazy-image card-img object-fit-cover lazy-image light-mode-img',
+                  loading: 'lazy',
+                  alt: block.settings.title
+              }}
+              {{
+                block.settings.image_dark
+                | default: block.settings.image
+                | image_url: width: 450
+                | image_tag:
+                  class: 'lazy-image dark-mode-img card-img object-fit-cover lazy-image',
+                  loading: 'lazy',
+                  alt: block.settings.title
+              }}
+            {% else %}
+              {{ 'image' | placeholder_svg_tag: 'card-img object-fit-cover' }}
+            {% endif %}
+
+            <div class="card-img-overlay d-inline-flex flex-column p-8 justify-content-end text-center">
+              {% if block.settings.title != blank %}
+                <h3 class="card-title text-white lh-45px">{{ block.settings.title }}</h3>
+              {% endif %}
+              {% if block.settings.text != blank %}
+                <p class="card-text fs-18px fw-semibold text-white">{{ block.settings.text }}</p>
+              {% endif %}
+              <div>
+                <a
+                  href="{{ block.settings.link }}"
+                  class="btn btn-white mt-10 mb-2"
+                >
+                  {{ block.settings.button_label }}
+                  <svg class="icon">
+                    <use xlink:href="#icon-arrow-right"></use>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1,
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const element = entry.target;
+          const animationClass = element.getAttribute('data-animate');
+
+          // Add classes to trigger animation and show element
+          element.classList.add('animate__animated');
+          if (animationClass) {
+            element.classList.add('animate__' + animationClass);
+          }
+
+          // Stop observing once animated
+          observer.unobserve(element);
+        }
+      });
+    }, observerOptions);
+
+    const animatedElements = document.querySelectorAll('.promotion-grid-section [data-animate]');
+    animatedElements.forEach((el) => observer.observe(el));
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Promotion Grid",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Custom Styling"
+    },
+    {
+      "type": "header",
+      "content": "Spacing Setting"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Spacing"
+    },
+    {
+      "type": "text",
+      "id": "margin_desktop",
+      "label": "Margin",
+      "info": "Format: top right bottom left (e.g. 10px 0 10px 0)"
+    },
+    {
+      "type": "text",
+      "id": "padding_desktop",
+      "label": "Padding",
+      "info": "Format: top right bottom left (e.g. 10px 0 10px 0)"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Spacing"
+    },
+    {
+      "type": "text",
+      "id": "margin_mobile",
+      "label": "Margin",
+      "info": "Format: top right bottom left (e.g. 10px 0 10px 0)"
+    },
+    {
+      "type": "text",
+      "id": "padding_mobile",
+      "label": "Padding",
+      "info": "Format: top right bottom left (e.g. 10px 0 10px 0)"
+    },
+    {
+      "type": "header",
+      "content": "Background Setting"
+    },
+    {
+      "type": "color",
+      "id": "section_bg_color",
+      "label": "Background Color"
+    },
+    {
+      "type": "image_picker",
+      "id": "section_bg_image",
+      "label": "Background Image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "promotion",
+      "name": "Promotion",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image (Light/Default)"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_dark",
+          "label": "Image (Dark Mode)"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Summer Collection"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Subheading",
+          "default": "Starting at $17.99"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button Label",
+          "default": "Shop Now"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Promotion Grid",
+      "blocks": [
+        {
+          "type": "promotion"
+        },
+        {
+          "type": "promotion"
+        },
+        {
+          "type": "promotion"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

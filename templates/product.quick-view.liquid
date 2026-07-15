@@ -1,0 +1,81 @@
+{% layout none %}
+<div class="row">
+  <div class="col-lg-6 mb-8 mb-lg-0">
+    <div class="row">
+      <div class="col-12">
+        <div class="swiper quick-view-slider">
+          <div class="swiper-wrapper">
+            {% for media in product.media %}
+              <div class="swiper-slide">
+                {{
+                  media
+                  | image_url: width: 600
+                  | image_tag: class: 'img-fluid w-100', loading: 'lazy', alt: media.alt
+                }}
+              </div>
+            {% else %}
+              <div class="swiper-slide">
+                {{ 'product-1' | placeholder_svg_tag: 'img-fluid w-100' }}
+              </div>
+            {% endfor %}
+          </div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        </div>
+      </div>
+      <div class="col-12 mt-4">
+        <div class="swiper quick-view-thumbs">
+          <div class="swiper-wrapper">
+            {% for media in product.media %}
+              <div class="swiper-slide cursor-pointer">
+                {{
+                  media
+                  | image_url: width: 100
+                  | image_tag: class: 'img-fluid w-100', loading: 'lazy', alt: media.alt
+                }}
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6">
+    <h2 class="fs-4 mb-2">{{ product.title }}</h2>
+    <div class="mb-4">
+      {% if product.compare_at_price > product.price %}
+        <span class="text-decoration-line-through text-body-tertiary me-2">{{ product.compare_at_price | money }}</span>
+        <span class="text-primary fw-bold">{{ product.price | money }}</span>
+      {% else %}
+        <span class="text-primary fw-bold">{{ product.price | money }}</span>
+      {% endif %}
+    </div>
+
+    <div class="mb-6">
+      {{ product.description | strip_html | truncatewords: 30 }}
+    </div>
+
+    <form method="post" action="{{ routes.cart_add_url }}" class="mb-6 quick-view-form">
+      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+      <div class="d-flex gap-2">
+        <input
+          type="number"
+          name="quantity"
+          value="1"
+          min="1"
+          class="form-control w-75px text-center"
+          aria-label="Quantity"
+        >
+        <button type="submit" class="btn btn-primary w-100">Add to Cart</button>
+      </div>
+    </form>
+
+    <div class="fs-14px">
+      <p class="mb-1"><strong>SKU:</strong> {{ product.selected_or_first_available_variant.sku | default: 'N/A' }}</p>
+      {% if product.collections.first %}
+        <p class="mb-1"><strong>Category:</strong> {{ product.collections.first.title }}</p>
+      {% endif %}
+      <p class="mt-3"><a href="{{ product.url }}" class="text-decoration-underline">View Full Details</a></p>
+    </div>
+  </div>
+</div>

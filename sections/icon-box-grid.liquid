@@ -1,0 +1,155 @@
+{% render 'section-style' %}
+<section class="icon-box-grid-section pt-10 pb-lg-17 pb-16">
+  <div class="container-xxl container">
+    <div class="row gx-30px gy-30px row-cols-1 row-cols-md-{{ section.settings.columns_desktop }}">
+      {% for block in section.blocks %}
+        <div class="col" data-animate="fadeInUp" {{ block.shopify_attributes }}>
+          <div class="">
+            <div class="d-flex justify-content-center">
+              {% if block.settings.image != blank %}
+                {{
+                  block.settings.image
+                  | image_url: width: 102
+                  | image_tag: class: 'lazy-image img-fluid light-mode-img', loading: 'lazy'
+                }}
+                {{
+                  block.settings.image_dark
+                  | default: block.settings.image
+                  | image_url: width: 102
+                  | image_tag: class: 'lazy-image dark-mode-img img-fluid', loading: 'lazy'
+                }}
+              {% else %}
+                {{ 'image' | placeholder_svg_tag: 'img-fluid' }}
+              {% endif %}
+            </div>
+            <div class="card-body text-center pt-7 mt-3">
+              {% if block.settings.title != blank %}
+                <h3 class="fs-4 mb-6">{{ block.settings.title }}</h3>
+              {% endif %}
+              {% if block.settings.text != blank %}
+                <p class="mb-0 px-lg-6">{{ block.settings.text }}</p>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Icon Box Grid",
+  "settings": [
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "label": "Desktop Columns",
+      "default": 3
+    },
+    {
+      "type": "header",
+      "content": "Custom Styling"
+    },
+    {
+      "type": "header",
+      "content": "Spacing Setting"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Spacing"
+    },
+    {
+      "type": "text",
+      "id": "margin_desktop",
+      "label": "Margin",
+      "info": "Format: top right bottom left (e.g. 10px 0 10px 0)"
+    },
+    {
+      "type": "text",
+      "id": "padding_desktop",
+      "label": "Padding",
+      "info": "Format: top right bottom left (e.g. 10px 0 10px 0)"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Spacing"
+    },
+    {
+      "type": "text",
+      "id": "margin_mobile",
+      "label": "Margin",
+      "info": "Format: top right bottom left (e.g. 10px 0 10px 0)"
+    },
+    {
+      "type": "text",
+      "id": "padding_mobile",
+      "label": "Padding",
+      "info": "Format: top right bottom left (e.g. 10px 0 10px 0)"
+    },
+    {
+      "type": "header",
+      "content": "Background Setting"
+    },
+    {
+      "type": "color",
+      "id": "section_bg_color",
+      "label": "Background Color"
+    },
+    {
+      "type": "image_picker",
+      "id": "section_bg_image",
+      "label": "Background Image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "icon_box",
+      "name": "Icon Box",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Icon Image (Light)"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_dark",
+          "label": "Icon Image (Dark)"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Ingredient Sourcing"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "All Grace formulations adhere to strict purity standards and will never contain harsh or toxic ingredients"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Icon Box Grid",
+      "blocks": [
+        {
+          "type": "icon_box"
+        },
+        {
+          "type": "icon_box"
+        },
+        {
+          "type": "icon_box"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

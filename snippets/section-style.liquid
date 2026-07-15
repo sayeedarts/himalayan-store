@@ -1,0 +1,16 @@
+{% style %}
+  #shopify-section-{{ section.id }} {
+    {% if section.settings.margin_desktop != blank %}margin: {{ section.settings.margin_desktop }};{% endif %}
+    {% if section.settings.padding_desktop != blank %}padding: {{ section.settings.padding_desktop }};{% endif %}
+
+    {% if section.settings.section_bg_color != blank and section.settings.section_bg_color != 'rgba(0,0,0,0)' %}background-color: {{ section.settings.section_bg_color }};{% endif %}
+    {% if section.settings.section_bg_image != blank %}background-image: url('{{ section.settings.section_bg_image | image_url: width: 2000 }}'); background-size: cover; background-position: center; background-repeat: no-repeat;{% endif %}
+  }
+
+  @media (max-width: 767px) {
+    #shopify-section-{{ section.id }} {
+      {% if section.settings.margin_mobile != blank %}margin: {{ section.settings.margin_mobile }};{% endif %}
+      {% if section.settings.padding_mobile != blank %}padding: {{ section.settings.padding_mobile }};{% endif %}
+    }
+  }
+{% endstyle %}

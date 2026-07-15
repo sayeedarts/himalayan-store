@@ -1,0 +1,230 @@
+{% render 'section-style' %}
+<section class="featured-collection-section" id="our_best_seller_2">
+  <style>
+    .featured-collection-section .swiper-button-next,
+    .featured-collection-section .swiper-button-prev {
+      color: #000;
+      top: 140px;
+      right: 50px;
+      left: auto;
+      border-radius: 50%;
+      background-color: #fff;
+      width: 50px;
+      height: 50px;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .featured-collection-section .swiper-button-next::after,
+    .featured-collection-section .swiper-button-prev::after {
+      font-size: 25px;
+    }
+
+    .featured-collection-section .swiper-button-prev {
+      left: 50px;
+      right: auto;
+    }
+    .featured-collection-section .swiper-button-disabled {
+      opacity: 0.3;
+    }
+  </style>
+  <div class="container-fluid pt-14 pt-lg-18">
+    <div class="container container-xxl container container-xxl">
+      <div class="row align-items-center mb-9 mt-3">
+        <div class="col-sm-8" data-animate="fadeInUp">
+          {% if section.settings.title != blank %}
+            <h2 class="h3 mb-0">{{ section.settings.title }}</h2>
+          {% endif %}
+        </div>
+        <div class="col-sm-4 text-sm-end" data-animate="fadeInUp">
+          {% if section.settings.link_text != blank %}
+            <a
+              href="{{ section.settings.link_url }}"
+              class="btn btn-link p-0 text-body-emphasis text-decoration-none fw-semibold text-primary-hover"
+            >
+              {{ section.settings.link_text }}
+              <svg class="icon">
+                <use xlink:href="#icon-arrow-right"></use>
+              </svg>
+            </a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <div class="swiper featured-swiper position-relative" data-animate="fadeInUp">
+      <div class="swiper-wrapper">
+        {% assign collection = collections[section.settings.collection] %}
+        {% if collection != blank %}
+          {% for product in collection.products limit: section.settings.limit %}
+            <div class="swiper-slide h-auto">
+              {% render 'product-card', product: product, show_rating: section.settings.show_rating, class: 'h-100' %}
+            </div>
+          {% endfor %}
+        {% else %}
+          {% for i in (1..5) %}
+            <div class="swiper-slide h-auto">
+              <div class="card card-product grid-1 bg-transparent border-0 h-100" data-animate="fadeInUp">
+                <figure class="card-img-top position-relative mb-7 overflow-hidden">
+                  <a href="#" class="d-block">
+                    {{ 'product-' | append: i | placeholder_svg_tag: 'img-fluid w-100' }}
+                  </a>
+                </figure>
+                <div class="card-body text-center p-0">
+                  <span class="d-flex align-items-center price text-body-emphasis fw-bold justify-content-center mb-3 fs-6"
+                    >$50.00</span
+                  >
+                  <h4 class="product-title card-title text-primary-hover text-body-emphasis fs-15px fw-500 mb-3">
+                    Example Product
+                  </h4>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        {% endif %}
+      </div>
+      <div class="swiper-pagination mt-5 position-relative"></div>
+
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var swiper = new Swiper('.featured-swiper', {
+      slidesPerView: 1,
+      spaceBetween: 30,
+      loop: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      breakpoints: {
+        576: {
+          slidesPerView: 2,
+        },
+        992: {
+          slidesPerView: 3,
+        },
+        1200: {
+          slidesPerView: 4,
+        },
+        1560: {
+          slidesPerView: 5,
+        },
+      },
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Featured Collection",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Our Bestsellers"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "limit",
+      "min": 4,
+      "max": 12,
+      "step": 1,
+      "label": "Product Limit",
+      "default": 8
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Link Text",
+      "default": "Shop All Products"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link URL"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "label": "Show Rating",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Custom Styling"
+    },
+    {
+      "type": "header",
+      "content": "Spacing Setting"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Spacing"
+    },
+    {
+      "type": "text",
+      "id": "margin_desktop",
+      "label": "Margin",
+      "info": "Format: top right bottom left (e.g. 10px 0 10px 0)"
+    },
+    {
+      "type": "text",
+      "id": "padding_desktop",
+      "label": "Padding",
+      "info": "Format: top right bottom left (e.g. 10px 0 10px 0)"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Spacing"
+    },
+    {
+      "type": "text",
+      "id": "margin_mobile",
+      "label": "Margin",
+      "info": "Format: top right bottom left (e.g. 10px 0 10px 0)"
+    },
+    {
+      "type": "text",
+      "id": "padding_mobile",
+      "label": "Padding",
+      "info": "Format: top right bottom left (e.g. 10px 0 10px 0)"
+    },
+    {
+      "type": "header",
+      "content": "Background Setting"
+    },
+    {
+      "type": "color",
+      "id": "section_bg_color",
+      "label": "Background Color"
+    },
+    {
+      "type": "image_picker",
+      "id": "section_bg_image",
+      "label": "Background Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Collection"
+    }
+  ]
+}
+{% endschema %}

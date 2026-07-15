@@ -1,0 +1,574 @@
+{% comment %}
+  Product Detail Page - V5 Design Refinements
+{% endcomment %}
+
+<section class="container pt-6 pb-13 pb-lg-20">
+  <div class="row">
+    <!-- Product Gallery -->
+    <div class="col-md-6 pe-lg-13">
+      <div class="row">
+        <!-- Vertical Thumbs (Left) -->
+        <div class="col-xl-2 pe-xl-0 order-1 order-xl-0 mt-5 mt-xl-0">
+          <div class="swiper swiper-thumbs ps-1 ms-n3 me-n4 mx-xl-0" style="height: 500px;">
+            <div class="swiper-wrapper">
+              {% for media in product.media %}
+                <div class="swiper-slide cursor-pointer mb-xl-7">
+                  <img
+                    src="{{ media.preview_image | image_url: width: 154, height: 205, crop: 'center' }}"
+                    class="img-fluid w-100 lazy-image"
+                    alt="{{ media.alt | escape }}"
+                    width="75"
+                    height="100"
+                  >
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Slider (Right) -->
+        <div class="col-xl-10 ps-xl-8 pe-xl-0 order-0 order-xl-1">
+          <div class="swiper swiper-main">
+            <div class="swiper-wrapper">
+              {% for media in product.media %}
+                <div class="swiper-slide">
+                  <div class="position-relative">
+                    {% if media.media_type == 'image' %}
+                      <img
+                        src="{{ media | image_url: width: 540, height: 720, crop: 'center' }}"
+                        class="img-fluid w-100 lazy-image h-auto"
+                        alt="{{ media.alt | escape }}"
+                        width="540"
+                        height="720"
+                        data-zoom="{{ media | image_url: width: 1080 }}"
+                      >
+                    {% elsif media.media_type == 'video' %}
+                      {{ media | video_tag: controls: true, class: 'w-100 h-auto' }}
+                    {% endif %}
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product Details -->
+    <div class="col-md-6 pt-md-0 pt-10">
+      <!-- Short Description -->
+      {% if product.metafields.descriptor.short_description != blank %}
+        <p class="mb-4 text-body-emphasis fw-semibold fs-6">{{ product.metafields.descriptor.short_description }}</p>
+      {% endif %}
+
+      <!-- Price & Badge -->
+      <p class="d-flex align-items-center mb-6">
+        {% if product.compare_at_price > product.price %}
+          <span class="text-decoration-line-through me-2">{{ product.compare_at_price | money }}</span>
+          <span class="fs-18px text-body-emphasis ps-6 fw-bold">{{ product.price | money }}</span>
+          <span class="badge text-bg-primary fs-6 fw-semibold ms-7 px-6 py-3">
+            {{
+              product.compare_at_price
+              | minus: product.price
+              | times: 100.0
+              | divided_by: product.compare_at_price
+              | round
+            -}}
+            %
+          </span>
+        {% else %}
+          <span class="fs-18px text-body-emphasis fw-bold">{{ product.price | money }}</span>
+        {% endif %}
+      </p>
+
+      <h1 class="mb-4 pb-2 fs-4">{{ product.title }}</h1>
+
+      <!-- Rating -->
+      <div class="d-flex align-items-center fs-15px mb-6">
+        <!-- Dynamic Rating Logic (Metafields) -->
+        {% assign rating = product.metafields.reviews.rating.value %}
+        {% assign rating_count = product.metafields.reviews.rating_count %}
+
+        {% if rating != blank %}
+          <p class="mb-0 fw-semibold text-body-emphasis">{{ rating }}</p>
+          <div class="d-flex align-items-center fs-12px justify-content-center mb-0 px-6 rating-result">
+            <div class="rating">
+              <div class="filled-stars" style="width: {{ rating | times: 20 }}%">
+                {% for i in (1..5) %}
+                  <span class="star">
+                    <svg class="icon star text-primary">
+                      <use xlink:href="#icon-star-light"></use>
+                    </svg>
+                  </span>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+          <a href="#reviews" class="border-start ps-6 text-body">Read {{ rating_count }} reviews</a>
+        {% else %}
+          <!-- Placeholder if no reviews yet -->
+          <div class="d-flex align-items-center fs-12px justify-content-center mb-0 px-0 rating-result">
+            <div class="rating">
+              <div class="filled-stars" style="width: 100%">
+                {% for i in (1..5) %}
+                  <span class="star">
+                    <svg class="icon star text-muted">
+                      <use xlink:href="#icon-star-light"></use>
+                    </svg>
+                  </span>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+          <a href="#reviews" class="border-start ps-6 text-body">Write a review</a>
+        {% endif %}
+      </div>
+
+      <!-- Detail/Excerpt -->
+      <div class="fs-15px mb-6">
+        {{ product.description | strip_html | truncatewords: 30 }}
+      </div>
+
+      <!-- Add to Cart Form -->
+      {% form 'product', product, id: 'product_form_id', class: 'product-form' %}
+        <input
+          type="hidden"
+          name="id"
+          value="{{ product.selected_or_first_available_variant.id }}"
+          id="master-variant-id"
+        >
+
+        {% unless product.has_only_default_variant %}
+          <div class="pb-8">
+            {% for option in product.options_with_values %}
+              {% assign option_name_downcase = option.name | downcase %}
+
+              {% if option_name_downcase contains 'color' or option_name_downcase contains 'colour' %}
+                <!-- Color Swatches -->
+                <div class="form-group product-color mb-7 mt-3">
+                  <label class="mb-2 pb-4">
+                    <span class="fw-semibold text-body-emphasis me-2 pe-4">{{ option.name }}:</span>
+                    <span class="selected-value-label" data-option-index="{{ forloop.index0 }}">
+                      {{- option.selected_value -}}
+                    </span>
+                  </label>
+                  <ul class="list-inline d-flex justify-content-start mb-0">
+                    {% for value in option.values %}
+                      <li
+                        class="list-inline-item list-color-product p-1 {% if option.selected_value == value %}selected{% endif %}"
+                        onclick="selectSwatch(this, '{{ option.name }}', '{{ value }}')"
+                      >
+                        <label
+                          class="color-item"
+                          title="{{ value }}"
+                          style="background-color: {{ value | split: ' ' | last | downcase }};"
+                        >
+                          <input
+                            type="radio"
+                            class="d-none variant-option"
+                            name="{{ option.name }}"
+                            value="{{ value }}"
+                            data-index="option{{ forloop.index }}"
+                            {% if option.selected_value == value %}
+                              checked
+                            {% endif %}
+                          >
+                        </label>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                </div>
+
+              {% else %}
+                <!-- Size / Other Options (Buttons) -->
+                <div class="form-group shop-swatch mb-7 d-flex align-items-center">
+                  <span class="fw-semibold text-body-emphasis me-7">{{ option.name }}: </span>
+                  <ul class="list-inline d-flex justify-content-start mb-0">
+                    {% for value in option.values %}
+                      <li class="list-inline-item me-4 fw-semibold">
+                        <input
+                          type="radio"
+                          id="option-{{ option.position }}-{{ forloop.index }}"
+                          name="{{ option.name }}"
+                          value="{{ value }}"
+                          class="product-info-size d-none variant-option"
+                          data-index="option{{ forloop.index }}"
+                          {% if option.selected_value == value %}
+                            checked
+                          {% endif %}
+                        >
+                        <label
+                          for="option-{{ option.position }}-{{ forloop.index }}"
+                          class="fs-14px p-4 d-block rounded text-decoration-none border"
+                        >
+                          {{- value -}}
+                        </label>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% endunless %}
+
+        <div class="row align-items-end">
+          <!-- Quantity -->
+          <div class="form-group col-sm-4">
+            <label class="text-body-emphasis fw-semibold fs-15px pb-6" for="quantity">Quantity:</label>
+            <div class="input-group position-relative w-100 input-group-lg">
+              <button
+                type="button"
+                class="shop-down position-absolute translate-middle-y top-50 start-0 ps-7 product-info-2-minus border-0 bg-transparent"
+                onclick="this.nextElementSibling.stepDown()"
+              >
+                <svg class="icon icon-minus">
+                  <use xlink:href="#icon-minus"></use>
+                </svg>
+              </button>
+              <input
+                name="quantity"
+                type="number"
+                id="quantity"
+                class="product-info-2-quantity form-control w-100 px-6 text-center"
+                value="1"
+                min="1"
+              >
+              <button
+                type="button"
+                class="shop-up position-absolute translate-middle-y top-50 end-0 pe-7 product-info-2-plus border-0 bg-transparent"
+                onclick="this.previousElementSibling.stepUp()"
+              >
+                <svg class="icon icon-plus">
+                  <use xlink:href="#icon-plus"></use>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Buttons -->
+          <div class="col-sm-8 pt-9 mt-2 mt-sm-0 pt-sm-0">
+            <button
+              type="submit"
+              name="add"
+              class="btn btn-lg btn-dark btn-block w-100 btn-hover-bg-primary btn-hover-border-primary"
+              {% unless product.available %}
+                disabled
+              {% endunless %}
+            >
+              {% if product.available %}
+                Add To Bag
+              {% else %}
+                Sold Out
+              {% endif %}
+            </button>
+          </div>
+        </div>
+      {% endform %}
+
+      <!-- Reviews Section -->
+      <div id="reviews" class="pt-10 mt-10 border-top">
+        <h3 class="mb-6">Customer Reviews</h3>
+        <div id="shopify-product-reviews" data-id="{{ product.id }}">{{ product.metafields.spr.reviews }}</div>
+      </div>
+
+      <!-- Actions -->
+      <div class="d-flex align-items-center flex-wrap mt-6">
+        <!-- Compare Removed -->
+
+        <a
+          href="#"
+          class="text-decoration-none fw-semibold fs-6 me-9 pe-2 d-flex align-items-center wishlist"
+          data-product-handle="{{ product.handle }}"
+        >
+          <svg class="icon fs-5">
+            <use xlink:href="#icon-star-light"></use>
+          </svg>
+          <span class="ms-4 ps-2">Add to wishlist</span>
+        </a>
+
+        <div class="dropdown">
+          <a
+            href="#"
+            class="text-decoration-none fw-semibold fs-6 me-9 pe-2 d-flex align-items-center "
+            data-bs-toggle="dropdown"
+          >
+            <svg class="icon fs-5">
+              <use xlink:href="#icon-ShareNetwork"></use>
+            </svg>
+            <span class="ms-4 ps-2">Share</span>
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a
+                class="dropdown-item"
+                href="https://www.facebook.com/sharer/sharer.php?u={{ shop.url | append: product.url }}"
+                target="_blank"
+                >Facebook</a
+              >
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                href="https://twitter.com/intent/tweet?url={{ shop.url | append: product.url }}&text={{ product.title }}"
+                target="_blank"
+                >Twitter</a
+              >
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                href="https://pinterest.com/pin/create/button/?url={{ shop.url | append: product.url }}&media={{ product.featured_image | image_url }}&description={{ product.title }}"
+                target="_blank"
+                >Pinterest</a
+              >
+            </li>
+            <li><hr class="dropdown-divider"></li>
+            <li>
+              <a
+                class="dropdown-item cursor-pointer"
+                onclick="navigator.clipboard.writeText(window.location.href); alert('Link copied!');"
+                >Copy Link</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Meta -->
+      <ul class="single-product-meta list-unstyled border-top pt-7 mt-7">
+        <li class="d-flex mb-4 pb-2 align-items-center">
+          <span class="text-body-emphasis fw-semibold fs-14px">Sku:</span>
+          <span class="ps-4 sku-display">{{ product.selected_or_first_available_variant.sku | default: 'N/A' }}</span>
+        </li>
+        <li class="d-flex mb-4 pb-2 align-items-center">
+          <span class="text-body-emphasis fw-semibold fs-14px">Categories:</span>
+          <span class="ps-4">
+            {% for collection in product.collections %}
+              <a href="{{ collection.url }}" class="text-body text-decoration-none">{{ collection.title }}</a>
+              {%- unless forloop.last %}, {% endunless %}
+            {% endfor %}
+          </span>
+        </li>
+      </ul>
+
+      <!-- Accordion -->
+      <div class="mt-11">
+        <div class="accordion accordion-flush" id="productAccordion">
+          <!-- Details -->
+          <div class="accordion-item pb-4">
+            <h2 class="accordion-header" id="headingOne">
+              <button
+                class="accordion-button fs-4 px-0 bg-transparent text-body-emphasis fw-semibold collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseOne"
+              >
+                Product Detail
+              </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#productAccordion">
+              <div class="pt-4 pb-3">
+                {{ product.description }}
+              </div>
+            </div>
+          </div>
+
+          <!-- Dynamic Blocks -->
+          {% for block in section.blocks %}
+            <div class="accordion-item pb-4 mt-4">
+              <h2 class="accordion-header" id="heading{{ block.id }}">
+                <button
+                  class="accordion-button fs-4 px-0 bg-transparent text-body-emphasis fw-semibold collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapse{{ block.id }}"
+                >
+                  {{ block.settings.heading }}
+                </button>
+              </h2>
+              <div id="collapse{{ block.id }}" class="accordion-collapse collapse" data-bs-parent="#productAccordion">
+                <div class="pt-4 pb-3">
+                  {{ block.settings.content }}
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Variant Data for JS -->
+<script>
+  var productVariants = {{ product.variants | json }};
+</script>
+
+<script src="{{ 'product-slider.js' | asset_url }}" defer></script>
+<script>
+  // Inline JS for Variants (to ensure it runs with liquid data context)
+  document.addEventListener('DOMContentLoaded', function () {
+    const variantInputs = document.querySelectorAll('.variant-option');
+    const masterSelect = document.getElementById('master-variant-id');
+    const addToCartBtn = document.querySelector('.product-form button[type="submit"]');
+    const priceDisplay = document.querySelector('.fs-18px.fw-bold'); // Simplistic selector, might need refinement
+    const skuDisplay = document.querySelector('.sku-display');
+
+    function updateVariant() {
+      const selectedOptions = Array.from(document.querySelectorAll('.variant-option:checked')).map(
+        (input) => input.value
+      );
+
+      let matchedVariant = productVariants.find((variant) => {
+        return variant.options.every((option, index) => {
+          return option === selectedOptions[index];
+        });
+      });
+
+      if (matchedVariant) {
+        masterSelect.value = matchedVariant.id;
+        if (skuDisplay) skuDisplay.textContent = matchedVariant.sku || 'N/A';
+
+        // Update Price
+        const moneyFormat = '{{ shop.money_format }}';
+
+        // Helper to format money
+        // Note: This is a simple replacer and might not handle all edge cases like {{amount_no_decimals}} if configured
+        // But for {{amount}} it usually works well.
+        const formatMoney = (cents, format) => {
+          if (typeof cents == 'string') {
+            cents = cents.replace('.', '');
+          }
+          let value = '';
+          const placeholderRegex = /\{\{\s*(\w+)\s*\}\}/;
+          const formatString = format || moneyFormat;
+
+          function defaultOption(opt, def) {
+            return typeof opt == 'undefined' ? def : opt;
+          }
+
+          function formatWithDelimiters(number, precision, thousands, decimal) {
+            precision = defaultOption(precision, 2);
+            thousands = defaultOption(thousands, ',');
+            decimal = defaultOption(decimal, '.');
+
+            if (isNaN(number) || number == null) {
+              return 0;
+            }
+
+            number = (number / 100.0).toFixed(precision);
+
+            var parts = number.split('.'),
+              dollars = parts[0].replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1' + thousands),
+              cents = parts[1] ? decimal + parts[1] : '';
+
+            return dollars + cents;
+          }
+
+          switch (formatString.match(placeholderRegex)[1]) {
+            case 'amount':
+              value = formatWithDelimiters(cents, 2);
+              break;
+            case 'amount_no_decimals':
+              value = formatWithDelimiters(cents, 0);
+              break;
+            case 'amount_with_comma_separator':
+              value = formatWithDelimiters(cents, 2, '.', ',');
+              break;
+            case 'amount_no_decimals_with_comma_separator':
+              value = formatWithDelimiters(cents, 0, '.', ',');
+              break;
+          }
+
+          return formatString.replace(placeholderRegex, value);
+        };
+
+        // Update Elements
+        const priceContainer = document.querySelector('.d-flex.align-items-center.mb-6');
+
+        if (priceContainer) {
+          let html = '';
+          let price = formatMoney(matchedVariant.price, moneyFormat);
+
+          if (matchedVariant.compare_at_price > matchedVariant.price) {
+            let comparePrice = formatMoney(matchedVariant.compare_at_price, moneyFormat);
+            let diff = matchedVariant.compare_at_price - matchedVariant.price;
+            let percent = Math.round((diff * 100) / matchedVariant.compare_at_price);
+
+            html += `<span class="text-decoration-line-through me-2">${comparePrice}</span>`;
+            html += `<span class="fs-18px text-body-emphasis ps-6 fw-bold">${price}</span>`;
+            html += `<span class="badge text-bg-primary fs-6 fw-semibold ms-7 px-6 py-3">${percent}%</span>`;
+          } else {
+            html += `<span class="fs-18px text-body-emphasis fw-bold">${price}</span>`;
+          }
+          priceContainer.innerHTML = html;
+        }
+
+        // Update Availability
+        if (matchedVariant.available) {
+          addToCartBtn.disabled = false;
+          addToCartBtn.textContent = 'Add To Bag';
+        } else {
+          addToCartBtn.disabled = true;
+          addToCartBtn.textContent = 'Sold Out';
+        }
+      } else {
+        addToCartBtn.disabled = true;
+        addToCartBtn.textContent = 'Unavailable';
+      }
+    }
+
+    variantInputs.forEach((input) => {
+      input.addEventListener('change', function () {
+        // Update Label Display
+        const labelSpan = this.closest('.form-group').querySelector('.selected-value-label');
+        if (labelSpan) labelSpan.textContent = this.value;
+
+        // For Swatches - toggling 'selected' class
+        if (this.closest('.list-color-product')) {
+          const listItems = this.closest('ul').querySelectorAll('.list-color-product');
+          listItems.forEach((li) => li.classList.remove('selected'));
+          this.closest('.list-color-product').classList.add('selected');
+        }
+
+        updateVariant();
+      });
+    });
+  });
+
+  // Helper for swatch click (proxy to radio)
+  function selectSwatch(element, optionName, value) {
+    const radio = element.querySelector('input[type="radio"]');
+    if (radio) {
+      radio.click();
+    }
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Product Information",
+  "blocks": [
+    {
+      "type": "accordion",
+      "name": "Accordion Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "How To Use"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

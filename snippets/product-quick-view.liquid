@@ -1,0 +1,164 @@
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+{%- assign featured_image = current_variant.featured_image | default: product.featured_image -%}
+
+<div class="row">
+  <div class="col-md-6 pe-13">
+    <div class="position-relative">
+      <div class="position-absolute z-index-2 w-100 d-flex justify-content-end">
+        <div class="p-6">
+          <a
+            href="#"
+            class="d-flex align-items-center justify-content-center product-gallery-action rounded-circle"
+            data-bs-toggle="tooltip"
+            data-bs-placement="left"
+            data-bs-title="Add to wishlist"
+          >
+            <svg class="icon fs-4">
+              <use xlink:href="#icon-star-light"></use>
+            </svg>
+          </a>
+          <a
+            href="#"
+            class="d-flex align-items-center justify-content-center mt-5 product-gallery-action rounded-circle"
+            data-bs-toggle="tooltip"
+            data-bs-placement="left"
+            data-bs-title="Compare"
+          >
+            <svg class="icon fs-4">
+              <use xlink:href="#icon-arrows-left-right-light"></use>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Main Swiper -->
+      <div class="swiper quick-view-slider mb-4">
+        <div class="swiper-wrapper">
+          {% for media in product.media %}
+            <div class="swiper-slide">
+              {{ media | image_url: width: 600 | image_tag: class: 'img-fluid w-100 h-auto', loading: 'lazy' }}
+            </div>
+          {% endfor %}
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      </div>
+
+      <!-- Thumbs Swiper -->
+      <div class="swiper quick-view-thumbs">
+        <div class="swiper-wrapper">
+          {% for media in product.media %}
+            <div class="swiper-slide cursor-pointer">
+              {{
+                media
+                | image_url: width: 100, height: 120, crop: 'center'
+                | image_tag: class: 'img-fluid', loading: 'lazy'
+              }}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6 pt-md-0 pt-10">
+    <p class="d-flex align-items-center mb-6">
+      {% if current_variant.compare_at_price > current_variant.price %}
+        <span class="text-decoration-line-through">{{ current_variant.compare_at_price | money }}</span>
+        <span class="fs-18px text-body-emphasis ps-6 fw-bold">{{ current_variant.price | money }}</span>
+        <span class="badge text-bg-primary fs-6 fw-semibold ms-7 px-6 py-3">Sale</span>
+      {% else %}
+        <span class="fs-18px text-body-emphasis fw-bold">{{ current_variant.price | money }}</span>
+      {% endif %}
+    </p>
+
+    <h1 class="mb-4 pb-2 fs-4">
+      <a href="{{ product.url }}">{{ product.title }}</a>
+    </h1>
+
+    <div class="d-flex align-items-center fs-15px mb-6">
+      <div class="rating">
+        <!-- Static stars for now -->
+        <span class="star">
+          <svg class="icon star text-primary">
+            <use xlink:href="#icon-star-light"></use>
+          </svg>
+        </span>
+        <span class="star">
+          <svg class="icon star text-primary">
+            <use xlink:href="#icon-star-light"></use>
+          </svg>
+        </span>
+        <span class="star">
+          <svg class="icon star text-primary">
+            <use xlink:href="#icon-star-light"></use>
+          </svg>
+        </span>
+        <span class="star">
+          <svg class="icon star text-primary">
+            <use xlink:href="#icon-star-light"></use>
+          </svg>
+        </span>
+        <span class="star">
+          <svg class="icon star text-primary">
+            <use xlink:href="#icon-star-light"></use>
+          </svg>
+        </span>
+      </div>
+      <span class="ms-4">No reviews</span>
+    </div>
+
+    <div class="fs-15px mb-6">
+      {{ product.description | strip_html | truncatewords: 30 }}
+    </div>
+
+    <form action="{{ routes.cart_add_url }}" method="post" enctype="multipart/form-data" class="mb-9 pb-2">
+      <input type="hidden" name="id" value="{{ current_variant.id }}">
+      <div class="row align-items-end">
+        <div class="form-group col-sm-4">
+          <label class="text-body-emphasis fw-semibold fs-15px pb-6" for="QuickViewNumber">Quantity:</label>
+          <div class="input-group position-relative w-100 input-group-lg">
+            <input
+              name="quantity"
+              type="number"
+              id="QuickViewNumber"
+              class="form-control w-100 px-6 text-center"
+              value="1"
+              min="1"
+            >
+          </div>
+        </div>
+        <div class="col-sm-8 pt-9 mt-2 mt-sm-0 pt-sm-0">
+          <button
+            type="submit"
+            class="btn btn-lg btn-dark w-100 btn-hover-bg-primary btn-hover-border-primary"
+            {% unless current_variant.available %}
+              disabled
+            {% endunless %}
+          >
+            {% if current_variant.available %}Add To Bag{% else %}Sold Out{% endif %}
+          </button>
+        </div>
+      </div>
+    </form>
+
+    <div class="card border-0 bg-body-tertiary rounded text-center mt-7">
+      <div class="card-body pt-6 pb-7">
+        <p class="fs-14px fw-normal mb-0">Guarantee safe & secure checkout</p>
+      </div>
+    </div>
+
+    <ul class="single-product-meta list-unstyled border-top pt-7 mt-7">
+      <li class="d-flex mb-4 pb-2 align-items-center">
+        <span class="text-body-emphasis fw-semibold fs-14px">Sku:</span>
+        <span class="ps-4">{{ current_variant.sku | default: 'N/A' }}</span>
+      </li>
+      {% if product.tags.size > 0 %}
+        <li class="d-flex mb-4 pb-2 align-items-center">
+          <span class="text-body-emphasis fw-semibold fs-14px">Tags:</span>
+          <span class="ps-4">{{ product.tags | join: ', ' }}</span>
+        </li>
+      {% endif %}
+    </ul>
+  </div>
+</div>

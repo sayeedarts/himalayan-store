@@ -1,0 +1,215 @@
+<section class="container">
+  <div class="shopping-cart">
+    <h2 class="text-center fs-2 mt-12 mb-13">{{ 'cart.title' | t }}</h2>
+
+    {% if cart.item_count > 0 %}
+      <form action="{{ routes.cart_url }}" method="post" novalidate class="table-responsive-md pb-8 pb-lg-10">
+        <table class="table border">
+          <thead class="bg-body-secondary">
+            <tr class="fs-15px letter-spacing-01 fw-semibold text-uppercase text-body-emphasis">
+              <th scope="col" class="fw-semibold border-1 ps-11">{{ 'customer.order.product' | t }}</th>
+              <th scope="col" class="fw-semibold border-1">{{ 'products.product.quantity.label' | t }}</th>
+              <th colspan="2" class="fw-semibold border-1">{{ 'products.product.price.label' | t }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in cart.items %}
+              <tr class="position-relative">
+                <th scope="row" class="pe-5 ps-8 py-7 shop-product">
+                  <div class="d-flex align-items-center">
+                    <div class="ms-6 me-7">
+                      {% if item.image %}
+                        <img
+                          src="{{ item.image | image_url: width: 150 }}"
+                          class="lazy-image"
+                          width="75"
+                          height="100"
+                          loading="lazy"
+                          alt="{{ item.image.alt | escape }}"
+                        >
+                      {% endif %}
+                    </div>
+                    <div class="">
+                      <p class="fw-500 mb-1 text-body-emphasis">{{ item.product.title }}</p>
+                      {% unless item.product.has_only_default_variant %}
+                        <p class="card-text text-muted fs-13px mb-1">{{ item.variant.title }}</p>
+                      {% endunless %}
+                      <p class="card-text">
+                        {% if item.original_price != item.final_price %}
+                          <span class="fs-13px fw-500 text-decoration-line-through pe-3">
+                            {{- item.original_price | money -}}
+                          </span>
+                        {% endif %}
+                        <span class="fs-15px fw-bold text-body-emphasis">{{ item.final_price | money }}</span>
+                      </p>
+                    </div>
+                  </div>
+                </th>
+                <td class="align-middle">
+                  <div class="input-group position-relative shop-quantity">
+                    <a
+                      href="#"
+                      class="shop-down position-absolute z-index-2"
+                      data-action="decrease"
+                      data-key="{{ item.key }}"
+                    >
+                      <svg class="icon icon-minus">
+                        <use xlink:href="#icon-minus"></use>
+                      </svg>
+                    </a>
+
+                    <input
+                      name="updates[]"
+                      type="number"
+                      class="form-control form-control-sm px-10 py-4 fs-6 text-center border-0"
+                      value="{{ item.quantity }}"
+                      min="0"
+                      data-key="{{ item.key }}"
+                      required
+                    >
+
+                    <a
+                      href="#"
+                      class="shop-up position-absolute z-index-2"
+                      data-action="increase"
+                      data-key="{{ item.key }}"
+                    >
+                      <svg class="icon icon-plus">
+                        <use xlink:href="#icon-plus"></use>
+                      </svg>
+                    </a>
+                  </div>
+                </td>
+                <td class="align-middle">
+                  <p class="mb-0 text-body-emphasis fw-bold mr-xl-11">{{ item.final_line_price | money }}</p>
+                </td>
+                <td class="align-middle text-end pe-8">
+                  <a
+                    href="{{ item.url_to_remove }}"
+                    class="d-block text-secondary clear-product"
+                    data-key="{{ item.key }}"
+                  >
+                    <svg class="icon icon-xmark">
+                      <use xlink:href="#icon-xmark"></use>
+                    </svg>
+                  </a>
+                </td>
+              </tr>
+            {% endfor %}
+
+            <tr>
+              <td class="pt-5 pb-10 position-relative bg-body ps-0 left">
+                <a
+                  href="{{ routes.all_products_collection_url }}"
+                  title="Continue Shopping"
+                  class="btn btn-outline-dark me-8 text-nowrap my-5"
+                >
+                  {{ 'general.continue_shopping' | t }}
+                </a>
+                <a
+                  href="/cart/clear"
+                  class="btn btn-link p-0 border-0 border-bottom border-secondary text-decoration-none rounded-0 my-5 fw-semibold "
+                >
+                  <svg class="icon icon-xmark me-3">
+                    <use xlink:href="#icon-xmark"></use>
+                  </svg>
+                  {{ 'cart.general.clear_cart' | t | default: 'Clear Shopping Cart' }}
+                </a>
+              </td>
+              <td colspan="3" class="text-end pt-5 pb-10 position-relative bg-body right pe-0">
+                <button type="submit" name="update" value="Update Cart" class="btn btn-outline-dark my-5">
+                  {{ 'cart.general.update' | t }}
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+
+      <div class="row pt-8 pt-lg-11 pb-16 pb-lg-18">
+        <div class="col-lg-4 pt-2">
+          <h4 class="fs-24 mb-6">Coupon Discount</h4>
+          <p class="mb-7">Enter your coupon code if you have one.</p>
+          <form action="/cart" method="post" novalidate>
+            <input type="text" name="discount" class="form-control mb-7" placeholder="Enter coupon code here">
+            <button
+              type="button"
+              class="btn btn-dark btn-hover-bg-primary btn-hover-border-primary"
+              onclick="alert('Coupons are calculated at checkout.');"
+            >
+              Apply coupon
+            </button>
+          </form>
+        </div>
+        <div class="col-lg-4 pt-lg-2 pt-10">
+          <h4 class="fs-24 mb-6">Shipping Calculator</h4>
+
+          {% comment %}
+            Implementing a basic placeholder or integration point for shipping calculator.
+            Fully functional shipping calculator requires JS and API calls (GET /cart/shipping_rates.json).
+            For now, preserving the layout.
+          {% endcomment %}
+
+          <form action="javascript:void(0);">
+            <div class="dropdown bg-body-secondary rounded mb-7">
+              <select class="form-select text-body-emphasis border-0 bg-transparent py-4" name="country">
+                {{ country_option_tags }}
+              </select>
+            </div>
+            <input type="text" class="form-control mb-7" placeholder="State / Province" name="province">
+            <input type="text" class="form-control mb-7" placeholder="City" name="city">
+            <input type="text" class="form-control mb-7" placeholder="Postcode / Zip" name="zip">
+            <button type="button" class="btn btn-dark btn-hover-bg-primary btn-hover-border-primary">
+              Calculate Shipping
+            </button>
+          </form>
+        </div>
+        <div class="col-lg-4 pt-lg-0 pt-11">
+          <div class="card border-0" style="box-shadow: 0 0 10px 0 rgba(0,0,0,0.1)">
+            <div class="card-body px-9 pt-6">
+              <div class="d-flex align-items-center justify-content-between mb-5">
+                <span>{{ 'cart.general.subtotal' | t }}:</span>
+                <span class="d-block ml-auto text-body-emphasis fw-bold">{{ cart.total_price | money }}</span>
+              </div>
+              <div class="d-flex align-items-center justify-content-between">
+                <span>Shipping:</span>
+                <span class="d-block ml-auto text-body-emphasis fw-bold">Calculated at checkout</span>
+              </div>
+            </div>
+            <div class="card-footer bg-transparent px-0 pt-5 pb-7 mx-9">
+              <div class="d-flex align-items-center justify-content-between fw-bold mb-7">
+                <span class="text-secondary text-body-emphasis">{{ 'cart.label.total' | t }} price:</span>
+                <span class="d-block ml-auto text-body-emphasis fs-4 fw-bold">{{ cart.total_price | money }}</span>
+              </div>
+              <form action="{{ routes.cart_url }}" method="post" novalidate>
+                <button
+                  type="submit"
+                  name="checkout"
+                  class="btn w-100 btn-dark btn-hover-bg-primary btn-hover-border-primary"
+                  title="Check Out"
+                >
+                  {{ 'cart.general.checkout' | t }}
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    {% else %}
+      <div class="text-center pb-16">
+        <p class="mb-5">{{ 'cart.general.empty' | t }}</p>
+        <a href="{{ routes.all_products_collection_url }}" class="btn btn-dark">
+          {{ 'general.continue_shopping' | t }}
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Cart",
+  "settings": []
+}
+{% endschema %}

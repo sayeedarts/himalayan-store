@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}" data-bs-theme="light">
+  <head>
+    <meta charset="UTF-8">
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    >
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>
+      {{ page_title }}
+      -
+      {{ shop.name }}
+    </title>
+
+    <link rel="canonical" href="{{ canonical_url }}">
+    {% if settings.favicon != blank %}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+    {% endif %}
+
+    {{ content_for_header }}
+
+    <!-- CSS -->
+    {{ 'lightgallery-bundle.min.css' | asset_url | stylesheet_tag }}
+    {{ 'all.min.css' | asset_url | stylesheet_tag }}
+    {{ 'animate.min.css' | asset_url | stylesheet_tag }}
+
+    {{ 'mapbox-gl.min.css' | asset_url | stylesheet_tag }}
+    {{ 'bootstrap-icons.css' | asset_url | stylesheet_tag }}
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+      rel="stylesheet"
+    >
+
+    <!-- Theme CSS -->
+    {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
+    {{ 'theme-custom.css' | asset_url | stylesheet_tag }}
+  </head>
+
+  <body class="template-{{ request.page_type | handle }}">
+    {% render 'icon-sprite' %}
+    <a class="skip-to-content-link button visually-hidden" href="#MainContent">
+      {{ 'accessibility.skip_to_text' | t }}
+    </a>
+
+    {% section 'header' %}
+
+    <main id="content" class="wrapper layout-page">
+      {% render 'breadcrumb' %}
+      {{ content_for_layout }}
+    </main>
+
+    {% section 'footer' %}
+    {% render 'search-drawer' %}
+    {% section 'cart-drawer' %}
+    {% render 'quick-view-modal' %}
+
+    <!-- JS -->
+    {{ 'jquery.min.js' | asset_url | script_tag }}
+
+    <!-- Vendor scripts might be needed here, assuming they are concatenated or individual -->
+    <!-- Typically bootstrap, slick, etc. I'll include common ones often found in such templates -->
+    <!-- Checking file list, assuming vendor libs are in assets or bundled. -->
+    <!-- Since I haven't seen the exact script includes in HTML, I will start with jquery and theme. -->
+    <!-- If specific vendor js files are needed, they should be added here. -->
+
+    {{ 'bootstrap.bundle.js' | asset_url | script_tag }}
+    {{ 'lazyload.min.js' | asset_url | script_tag }}
+    {{ 'jquery.waypoints.min.js' | asset_url | script_tag }}
+    {{ 'lightgallery.min.js' | asset_url | script_tag }}
+    {{ 'lg-zoom.min.js' | asset_url | script_tag }}
+    {{ 'lg-thumbnail.min.js' | asset_url | script_tag }}
+    {{ 'lg-video.min.js' | asset_url | script_tag }}
+    {{ 'lg-vimeo-thumbnail.min.js' | asset_url | script_tag }}
+    {{ 'swiper-bundle.min.js' | asset_url | script_tag }}
+
+    <script src="{{ 'quick-view.js' | asset_url }}" defer></script>
+    {% render 'alert-modal' %}
+    <script src="{{ 'cart-ajax.js' | asset_url }}" defer></script>
+    <script src="{{ 'wishlist.js' | asset_url }}" defer></script>
+    <script src="{{ 'color-modes.js' | asset_url }}" defer></script>
+    <script src="{{ 'theme.min.js' | asset_url }}" defer></script>
+    <script src="{{ 'search-drawer.js' | asset_url }}" defer></script>
+  </body>
+</html>

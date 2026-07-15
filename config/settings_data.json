@@ -1,0 +1,99 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "current": {
+    "logo": "shopify://shop_images/logo.png",
+    "logo_width": 150,
+    "favicon": "shopify://shop_images/favicon.png",
+    "sections": {
+      "header": {
+        "type": "header",
+        "blocks": {
+          "announcement_ybXEV6": {
+            "type": "announcement",
+            "settings": {
+              "text": "Free shipping on all over india"
+            }
+          },
+          "announcement_EW8fBW": {
+            "type": "announcement",
+            "settings": {
+              "text": "The complete extra sale 20% off look"
+            }
+          }
+        },
+        "block_order": [
+          "announcement_ybXEV6",
+          "announcement_EW8fBW"
+        ],
+        "settings": {
+          "header_style": "style_2",
+          "menu": "main-menu",
+          "header_left_text": "Free Shipping Over $99",
+          "topbar_text": "Free shipping on all U.S orders $50+ Free shipping on all U.S orders $50+ Free shipping on all U.S orders $50+",
+          "show_announcement": true,
+          "announcement_bg_color": "#bc8e49",
+          "announcement_text_color": "#ffffff"
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "blocks": {
+          "footer-0": {
+            "type": "text",
+            "settings": {
+              "title": "Company",
+              "text": "<p>Find a location nearest you. See Our Stores</p>"
+            }
+          },
+          "footer-2": {
+            "type": "menu",
+            "settings": {
+              "title": "Useful links",
+              "menu": "footer"
+            }
+          },
+          "menu_AmTGXU": {
+            "type": "menu",
+            "settings": {
+              "title": "Information",
+              "menu": "customer-account-main-menu"
+            }
+          },
+          "contact_Gm8J7j": {
+            "type": "contact",
+            "settings": {
+              "title": "Contact  Us",
+              "address_text": "123 Street Name, City, England",
+              "email_text": "mail@example.com",
+              "phone_text": "(123) 456-7890"
+            }
+          }
+        },
+        "block_order": [
+          "footer-0",
+          "footer-2",
+          "menu_AmTGXU",
+          "contact_Gm8J7j"
+        ],
+        "settings": {
+          "show_social": true,
+          "logo_width": 150,
+          "payment_image": "shopify://shop_images/payment.png"
+        }
+      },
+      "cart-drawer": {
+        "type": "cart-drawer",
+        "settings": {}
+      }
+    },
+    "content_for_index": []
+  }
+}

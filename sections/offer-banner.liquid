@@ -1,0 +1,190 @@
+{% render 'section-style' %}
+<section class="pb-lg-17 pb-16 pt-16 mt-16 countdown-banner-section">
+  <div class="container container-xxl">
+    <div class="row align-items-center">
+      <div class="col-lg-3 col-5" data-animate="fadeInUp">
+        {% if section.settings.image_1 != blank %}
+          {{
+            section.settings.image_1
+            | image_url: width: 305
+            | image_tag: class: 'lazy-image img-fluid light-mode-img', loading: 'lazy'
+          }}
+          {{
+            section.settings.image_1_dark
+            | default: section.settings.image_1
+            | image_url: width: 305
+            | image_tag: class: 'lazy-image dark-mode-img img-fluid', loading: 'lazy'
+          }}
+        {% else %}
+          {{ 'image' | placeholder_svg_tag: 'img-fluid' }}
+        {% endif %}
+      </div>
+      <div class="col-lg-4 col-7" data-animate="fadeInUp">
+        {% if section.settings.image_2 != blank %}
+          {{
+            section.settings.image_2
+            | image_url: width: 450
+            | image_tag: class: 'lazy-image img-fluid light-mode-img', loading: 'lazy'
+          }}
+          {{
+            section.settings.image_2_dark
+            | default: section.settings.image_2
+            | image_url: width: 450
+            | image_tag: class: 'lazy-image dark-mode-img img-fluid', loading: 'lazy'
+          }}
+        {% else %}
+          {{ 'image' | placeholder_svg_tag: 'img-fluid' }}
+        {% endif %}
+      </div>
+      <div class="col-lg-5 col-12 pt-lg-0 pt-14 ps-xxl-21" data-animate="fadeInUp">
+        <div class="text-left">
+          {% if section.settings.subheading != blank %}
+            <p class="fs-15px mb-6 ls-1 text-body-emphasis fw-semibold">
+              {{ section.settings.subheading }}
+              {% if section.settings.badge != blank %}
+                <span class="badge bg-primary fs-15px py-3 px-4 ms-4">{{ section.settings.badge }}</span>
+              {% endif %}
+            </p>
+          {% endif %}
+          {% if section.settings.heading != blank %}
+            <h2 class="mb-6">{{ section.settings.heading }}</h2>
+          {% endif %}
+          {% if section.settings.text != blank %}
+            <p class="fs-18px me-md-25 me-lg-0 me-xl-10 mb-7">{{ section.settings.text }}</p>
+          {% endif %}
+        </div>
+
+        {% if section.settings.button_label != blank %}
+          <a
+            href="{{ section.settings.button_link }}"
+            class="mt-11 btn btn-dark btn-hover-border-primary btn-hover-bg-primary shadow"
+          >
+            {{- section.settings.button_label -}}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Offer Banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image 1 (Left)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1_dark",
+      "label": "Image 1 (Dark Mode)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image 2 (Center)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2_dark",
+      "label": "Image 2 (Dark Mode)"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "SPECIAL OFFER"
+    },
+    {
+      "type": "text",
+      "id": "badge",
+      "label": "Badge Text",
+      "default": "-20%"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Mountain Pine Bath Oil"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "Made using clean, non-toxic ingredients, our products are designed for everyone."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Get Only $39.00"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Custom Styling"
+    },
+    {
+      "type": "header",
+      "content": "Spacing Setting"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Spacing"
+    },
+    {
+      "type": "text",
+      "id": "margin_desktop",
+      "label": "Margin",
+      "info": "Format: top right bottom left (e.g. 10px 0 10px 0)"
+    },
+    {
+      "type": "text",
+      "id": "padding_desktop",
+      "label": "Padding",
+      "info": "Format: top right bottom left (e.g. 10px 0 10px 0)"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Spacing"
+    },
+    {
+      "type": "text",
+      "id": "margin_mobile",
+      "label": "Margin",
+      "info": "Format: top right bottom left (e.g. 10px 0 10px 0)"
+    },
+    {
+      "type": "text",
+      "id": "padding_mobile",
+      "label": "Padding",
+      "info": "Format: top right bottom left (e.g. 10px 0 10px 0)"
+    },
+    {
+      "type": "header",
+      "content": "Background Setting"
+    },
+    {
+      "type": "color",
+      "id": "section_bg_color",
+      "label": "Background Color"
+    },
+    {
+      "type": "image_picker",
+      "id": "section_bg_image",
+      "label": "Background Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Offer Banner"
+    }
+  ]
+}
+{% endschema %}

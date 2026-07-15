@@ -1,0 +1,259 @@
+{%- liquid
+  assign sort_by = collection.sort_by | default: collection.default_sort_by
+-%}
+
+<section class="container container-xxl">
+  <div class="tool-bar mb-11 align-items-center justify-content-between d-lg-flex">
+    <div class="tool-bar-left mb-6 mb-lg-0 fs-18px">
+      We found <span class="text-body-emphasis fw-semibold">{{ collection.products_count }}</span> products available
+      for you
+    </div>
+    <div class="tool-bar-right align-items-center d-flex ">
+      <ul class="list-unstyled d-flex align-items-center list-inline me-lg-7 me-0 mb-0 ">
+        <li class="list-inline-item me-7">
+          <a class="fs-32px text-body-emphasis-hover text-body-emphasis" href="#">
+            <svg class="icon icon-squares-four">
+              <use xlink:href="#icon-squares-four"></use>
+            </svg>
+          </a>
+        </li>
+        <li class="list-inline-item me-0">
+          <a class="fs-32px text-body-emphasis-hover text-muted" href="#">
+            <svg class="icon icon-list">
+              <use xlink:href="#icon-list"></use>
+            </svg>
+          </a>
+        </li>
+      </ul>
+      <ul class="list-unstyled d-flex align-items-center list-inline mb-0 ms-auto">
+        <li class="list-inline-item me-0">
+          <form id="FacetSortForm">
+            <select
+              name="sort_by"
+              class="form-select"
+              id="SortBy"
+              aria-describedby="a11y-refresh-page-message"
+              onchange="this.form.submit()"
+            >
+              {%- for option in collection.sort_options -%}
+                <option
+                  value="{{ option.value | escape }}"
+                  {% if option.value == sort_by %}
+                    selected="selected"
+                  {% endif %}
+                >
+                  {{ option.name | escape }}
+                </option>
+              {%- endfor -%}
+            </select>
+          </form>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="container container-xxl pb-16 pb-lg-18">
+  <div class="row">
+    <div class="col-lg-9 order-lg-1">
+      <div class="row gy-11">
+        {% paginate collection.products by 12 %}
+          {%- if collection.products.size == 0 -%}
+            <div class="col-12">
+              <p>No products found.</p>
+            </div>
+          {%- else -%}
+            {% for product in collection.products %}
+              <div class="col-sm-6 col-lg-4 col-xl-3">
+                {% render 'product-card', product: product %}
+              </div>
+            {% endfor %}
+          {%- endif -%}
+
+          {%- if paginate.pages > 1 -%}
+            <div class="col-12 mt-13">
+              <nav class="d-flex pt-3 justify-content-center" aria-label="pagination">
+                <ul class="pagination m-0">
+                  {%- if paginate.previous -%}
+                    <li class="page-item">
+                      <a
+                        class="page-link rounded-circle d-flex align-items-center justify-content-center"
+                        href="{{ paginate.previous.url }}"
+                        aria-label="Previous"
+                      >
+                        <svg class="icon">
+                          <use xlink:href="#icon-angle-double-left"></use>
+                        </svg>
+                      </a>
+                    </li>
+                  {%- endif -%}
+
+                  {%- for part in paginate.parts -%}
+                    {%- if part.is_link -%}
+                      <li class="page-item">
+                        <a class="page-link" href="{{ part.url }}">{{ part.title }}</a>
+                      </li>
+                    {%- else -%}
+                      {%- if part.title == paginate.current_page -%}
+                        <li class="page-item active">
+                          <a class="page-link" href="#">{{ part.title }}</a>
+                        </li>
+                      {%- else -%}
+                        <li class="page-item">
+                          <a class="page-link" href="#">{{ part.title }}</a>
+                        </li>
+                      {%- endif -%}
+                    {%- endif -%}
+                  {%- endfor -%}
+
+                  {%- if paginate.next -%}
+                    <li class="page-item">
+                      <a
+                        class="page-link rounded-circle d-flex align-items-center justify-content-center"
+                        href="{{ paginate.next.url }}"
+                        aria-label="Next"
+                      >
+                        <svg class="icon">
+                          <use xlink:href="#icon-angle-double-right"></use>
+                        </svg>
+                      </a>
+                    </li>
+                  {%- endif -%}
+                </ul>
+              </nav>
+            </div>
+          {%- endif -%}
+        {% endpaginate %}
+      </div>
+    </div>
+
+    <div class="col-lg-3 d-lg-block d-none">
+      <div class="position-sticky top-0">
+        <aside class="primary-sidebar pe-xl-9 me-xl-2 mt-12 pt-2 mt-lg-0 pt-lg-0">
+          <form id="FacetFiltersForm">
+            {%- for filter in collection.filters -%}
+              <div class="widget widget-{{ filter.label | handleize }}">
+                <h4 class="widget-title fs-5 mb-6">{{ filter.label }}</h4>
+
+                {%- case filter.type -%}
+                  {%- when 'boolean' -%}
+                  {%- when 'list' -%}
+                    <ul class="navbar-nav navbar-nav-cate" id="widget_{{ filter.label | handleize }}">
+                      {%- for filter_value in filter.values -%}
+                        <li class="nav-item">
+                          {%- liquid
+                            assign is_availability = false
+                            if filter.label == 'Availability' or filter.values.first.param_name == 'filter.v.availability'
+                              assign is_availability = true
+                            endif
+
+                            assign new_url = filter_value.url_to_add
+                            if is_availability and filter_value.active == false
+                              assign active_value = filter.values | where: 'active', true | first
+                              if active_value
+                                assign base_url = active_value.url_to_remove
+                                if base_url contains '?'
+                                  assign new_url = base_url | append: '&'
+                                else
+                                  assign new_url = base_url | append: '?'
+                                endif
+                                assign new_url = new_url | append: filter_value.param_name | append: '=' | append: filter_value.value
+                              endif
+                            endif
+                          -%}
+                          <a
+                            href="{{ new_url }}"
+                            class="text-reset position-relative d-block text-decoration-none text-body-emphasis-hover d-flex align-items-center {% if filter_value.active %}active{% endif %}"
+                            {% if filter_value.active %}
+                              href="{{ filter_value.url_to_remove }}"
+                            {% endif %}
+                          >
+                            {% comment %} Detect if it's a Color filter by label name {% endcomment %}
+                            {% assign filter_label_down = filter.label | downcase %}
+                            {% if filter_label_down contains 'color' or filter_label_down contains 'colour' %}
+                              <span
+                                class="square rounded-circle me-4"
+                                style="background-color: {{ filter_value.label | handleize }};"
+                              ></span>
+                            {% endif %}
+
+                            <span class="text-hover-underline {% if filter_value.active %}fw-bold{% endif %}">
+                              {{ filter_value.label }}
+                            </span>
+                            {% if filter_value.count > 0 %}
+                              <span class="ms-auto text-muted fs-12px">({{ filter_value.count }})</span>
+                            {% endif %}
+                          </a>
+                        </li>
+                      {%- endfor -%}
+                    </ul>
+
+                  {%- when 'price_range' -%}
+                    <div class="filter-group-display__price-range">
+                      <div class="input-group mb-3">
+                        <span class="input-group-text">{{ cart.currency.symbol }}</span>
+                        <input
+                          name="{{ filter.min_value.param_name }}"
+                          id="Filter-{{ filter.min_value.param_name }}"
+                          {% if filter.min_value.value -%}
+                            value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}"
+                          {%- endif %}
+                          type="number"
+                          placeholder="0"
+                          min="0"
+                          max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                          class="form-control"
+                        >
+                        <span class="input-group-text">to</span>
+                        <input
+                          name="{{ filter.max_value.param_name }}"
+                          id="Filter-{{ filter.max_value.param_name }}"
+                          {% if filter.max_value.value -%}
+                            value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}"
+                          {%- endif %}
+                          type="number"
+                          placeholder="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                          min="0"
+                          max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                          class="form-control"
+                        >
+                      </div>
+                      <button type="submit" class="btn btn-sm btn-dark w-100">Apply</button>
+                    </div>
+                {%- endcase -%}
+              </div>
+            {%- endfor -%}
+
+            {% if collection.filters.size == 0 %}
+              <p>No filters available.</p>
+            {% endif %}
+
+            <div class="mt-5">
+              <a href="{{ collection.url }}?sort_by={{ sort_by }}" class="text-decoration-underline text-body-emphasis"
+                >Clear all filters</a
+              >
+            </div>
+          </form>
+        </aside>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.main-collection-product-grid.name",
+  "class": "section",
+  "settings": [
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "min": 8,
+      "max": 24,
+      "step": 4,
+      "default": 16,
+      "label": "t:sections.main-collection-product-grid.settings.products_per_page.label"
+    }
+  ]
+}
+{% endschema %}

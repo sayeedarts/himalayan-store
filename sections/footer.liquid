@@ -1,0 +1,243 @@
+{% comment %} Force sync {% endcomment %}
+<footer class="pt-15 pt-lg-15 pb-16 footer">
+  <div class="container container-xxl pt-4">
+    <div class="row">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'text' %}
+            <div class="col-lg col-md-6 col-12 mb-11 mb-lg-0 fs-14px" {{ block.shopify_attributes }}>
+              {% if block.settings.title != blank %}
+                <h3 class="fs-5 mb-6">{{ block.settings.title }}</h3>
+              {% endif %}
+              <div class="pe-xl-18 lh-2">
+                {{ block.settings.text }}
+              </div>
+            </div>
+
+          {% when 'menu' %}
+            <div class="col-lg col-md-6 col-12 mb-11 mb-lg-0" {{ block.shopify_attributes }}>
+              {% if block.settings.title != blank %}
+                <h3 class="fs-5 mb-6">{{ block.settings.title }}</h3>
+              {% endif %}
+              <ul class="list-unstyled mb-0 fw-medium">
+                {% for link in linklists[block.settings.menu].links %}
+                  <li class="pt-3 mb-4">
+                    <a href="{{ link.url }}" title="{{ link.title }}" class="text-body">{{ link.title }}</a>
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+
+          {% when 'contact' %}
+            <div class="col-lg col-md-6 col-12 mb-11 mb-lg-0" {{ block.shopify_attributes }}>
+              {% if block.settings.title != blank %}
+                <h3 class="fs-5 mb-6">{{ block.settings.title }}</h3>
+              {% endif %}
+              <ul class="list-unstyled mb-0 fw-medium">
+                {% if block.settings.address_text != blank %}
+                  <li class="pt-3 mb-4 d-flex align-items-baseline">
+                    <svg class="icon me-4" width="18" height="18">
+                      <use xlink:href="#location-dot"></use>
+                    </svg>
+                    <span class="text-body">{{ block.settings.address_text }}</span>
+                  </li>
+                {% endif %}
+                {% if block.settings.email_text != blank %}
+                  <li class="pt-3 mb-4 d-flex align-items-baseline">
+                    <svg class="icon me-4" width="18" height="18">
+                      <use xlink:href="#envelope"></use>
+                    </svg>
+                    <a href="mailto:{{ block.settings.email_text }}" class="text-body">
+                      {{- block.settings.email_text -}}
+                    </a>
+                  </li>
+                {% endif %}
+                {% if block.settings.phone_text != blank %}
+                  <li class="pt-3 mb-4 d-flex align-items-baseline">
+                    <svg class="icon me-4" width="18" height="18">
+                      <use xlink:href="#mobile"></use>
+                    </svg>
+                    <a href="tel:{{ block.settings.phone_text }}" class="text-body">{{ block.settings.phone_text }}</a>
+                  </li>
+                {% endif %}
+              </ul>
+            </div>
+        {% endcase %}
+      {% endfor %}
+    </div>
+  </div>
+</footer>
+
+<div class="container container-xxl pt-10 pb-15">
+  <div class="row align-items-center">
+    <div class="col-sm-12 col-md-6 col-lg-4 d-flex align-items-center order-2 order-lg-1 fs-6 mt-8 mt-lg-0">
+      <p class="mb-0">
+        © {{ shop.name }}
+        {{ 'now' | date: '%Y' }}
+      </p>
+      {% if section.settings.show_social %}
+        <ul class="list-inline fs-18px ms-6 mb-0">
+          {% if settings.social_twitter_link != blank %}
+            <li class="list-inline-item me-8">
+              <a href="{{ settings.social_twitter_link }}"><i class="fab fa-twitter"></i></a>
+            </li>
+          {% endif %}
+          {% if settings.social_facebook_link != blank %}
+            <li class="list-inline-item me-8">
+              <a href="{{ settings.social_facebook_link }}"><i class="fab fa-facebook-f"></i></a>
+            </li>
+          {% endif %}
+          {% if settings.social_instagram_link != blank %}
+            <li class="list-inline-item me-8">
+              <a href="{{ settings.social_instagram_link }}"><i class="fab fa-instagram"></i></a>
+            </li>
+          {% endif %}
+          {% if settings.social_youtube_link != blank %}
+            <li class="list-inline-item">
+              <a href="{{ settings.social_youtube_link }}"><i class="fab fa-youtube"></i></a>
+            </li>
+          {% endif %}
+        </ul>
+      {% endif %}
+    </div>
+
+    <div class="col-sm-12 col-lg-4 text-md-center order-1 order-lg-2">
+      <a class="d-inline-block" href="{{ routes.root_url }}">
+        {% assign logo = settings.logo %}
+        {% if logo != blank %}
+          {{
+            logo
+            | image_url: width: section.settings.logo_width
+            | image_tag: class: 'lazy-image img-fluid light-mode-img', loading: 'lazy', alt: shop.name
+          }}
+        {% else %}
+          <span class="h4">{{ shop.name }}</span>
+        {% endif %}
+      </a>
+    </div>
+
+    <div class="col-sm-12 col-md-6 col-lg-4 order-3 text-sm-start text-lg-end mt-8 mt-lg-0">
+      {% if section.settings.payment_image != blank %}
+        {{
+          section.settings.payment_image
+          | image_url: width: 313
+          | image_tag: class: 'img-fluid lazy-image', loading: 'lazy'
+        }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Footer",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_social",
+      "label": "Show Social Icons",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 50,
+      "max": 250,
+      "step": 5,
+      "default": 150,
+      "unit": "px",
+      "label": "Logo Width"
+    },
+    {
+      "type": "image_picker",
+      "id": "payment_image",
+      "label": "Payment Methods Image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Company"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Find a location nearest you. See Our Stores</p>"
+        }
+      ]
+    },
+    {
+      "type": "menu",
+      "name": "Menu",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Useful links"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu",
+          "default": "footer"
+        }
+      ]
+    },
+    {
+      "type": "contact",
+      "name": "Contact Info",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Contact"
+        },
+        {
+          "type": "textarea",
+          "id": "address_text",
+          "label": "Address",
+          "default": "123 Street Name, City, England"
+        },
+        {
+          "type": "text",
+          "id": "email_text",
+          "label": "Email",
+          "default": "mail@example.com"
+        },
+        {
+          "type": "text",
+          "id": "phone_text",
+          "label": "Phone",
+          "default": "(123) 456-7890"
+        }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      {
+        "type": "text"
+      },
+      {
+        "type": "menu"
+      },
+      {
+        "type": "menu"
+      },
+      {
+        "type": "contact"
+      }
+    ]
+  }
+}
+{% endschema %}

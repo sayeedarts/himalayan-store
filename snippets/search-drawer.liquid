@@ -1,0 +1,84 @@
+<div
+  class="offcanvas offcanvas-end"
+  tabindex="-1"
+  id="searchDrawer"
+  aria-labelledby="searchDrawerLabel"
+>
+  <div class="offcanvas-header px-10 py-8">
+    <h5 class="offcanvas-title fs-5 fw-semibold" id="searchDrawerLabel">SEARCH OUR SITE</h5>
+    <button
+      type="button"
+      class="btn-close text-reset"
+      data-bs-dismiss="offcanvas"
+      aria-label="Close"
+    ></button>
+  </div>
+  <div class="offcanvas-body px-10 pt-0">
+    <div class="search-drawer-content">
+      <form action="{{ routes.search_url }}" method="get" role="search" class="search-drawer-form">
+        <!-- Category Dropdown -->
+        <div class="mb-4 position-relative">
+          <select
+            class="form-select rounded-pill py-3 ps-5 border-secondary-subtle text-body-emphasis"
+            name="category_filter"
+            id="searchCategoryFilter"
+          >
+            <option value="" selected>All Categories</option>
+            {% for collection in collections %}
+              <option value="{{ collection.handle }}">{{ collection.title }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <!-- Search Input -->
+        <div class="position-relative">
+          <input
+            type="text"
+            name="q"
+            id="SearchDrawerInput"
+            class="form-control rounded-pill py-3 ps-5 pe-12 border-secondary-subtle"
+            placeholder="Search..."
+            autocomplete="off"
+          >
+          <input type="hidden" name="type" value="product">
+          <input type="hidden" name="options[prefix]" value="last">
+          <button
+            type="submit"
+            class="position-absolute top-50 end-0 translate-middle-y me-4 bg-transparent border-0 p-0 text-muted"
+            aria-label="Search"
+          >
+            <svg class="icon fs-5">
+              <use xlink:href="#search"></use>
+            </svg>
+          </button>
+        </div>
+      </form>
+
+      <!-- Results Container -->
+      <div id="predictive-search-results" class="mt-8">
+        <h6 class="mb-6 fw-bold">Need some inspiration?</h6>
+        <div class="search-results-list">
+          <!-- Default suggestions or empty state -->
+          <!-- This will be populated by JS -->
+          {% for product in collections.frontpage.products limit: 4 %}
+            <div class="d-flex align-items-center mb-6">
+              <a href="{{ product.url }}" class="flex-shrink-0 me-4">
+                {{
+                  product.featured_image
+                  | image_url: width: 80, height: 80
+                  | image_tag: class: 'rounded object-fit-cover', width: 80, height: 80
+                }}
+              </a>
+              <div>
+                <h6 class="mb-1 text-body-emphasis fw-semibold font-primary fs-15px">
+                  <a href="{{ product.url }}" class="text-decoration-none text-reset">{{ product.title }}</a>
+                </h6>
+                <p class="mb-0 text-muted fs-14px">{{ product.price | money }}</p>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
