@@ -237,7 +237,7 @@
       "type": "featured-collection",
       "settings": {
         "title": "Our Bestsellers",
-        "collection": "green-tea",
+        "collection": "wellness-tea",
         "limit": 8,
         "link_text": "Shop All Products",
         "link_url": "shopify://collections/all",
