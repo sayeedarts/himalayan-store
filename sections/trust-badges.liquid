@@ -1,0 +1,141 @@
+{% render 'section-style' %}
+<section class="trust-badges-section py-12 bg-white">
+  <div class="container container-xxl">
+    <div class="row gx-4 gy-6 justify-content-center text-center">
+      {% for block in section.blocks %}
+        <div class="col-6 col-md-3" {{ block.shopify_attributes }}>
+          <div class="trust-badge-card d-flex flex-column align-items-center p-6 h-100 transition-all border border-transparent rounded-4">
+            <div class="trust-badge-icon-wrapper d-flex align-items-center justify-content-center mb-6 rounded-circle bg-light" style="width: 72px; height: 72px;">
+              {% if block.settings.custom_icon != blank %}
+                {{ block.settings.custom_icon | image_url: width: 80 | image_tag: class: 'img-fluid', loading: 'lazy' }}
+              {% else %}
+                {% comment %} Default fallback SVG icons based on claims {% endcomment %}
+                {% if block.settings.icon_type == 'shield' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-check"><path d="M20 13c0 5-3.5 7.5-7.66 9.7a1 1 0 0 1-.68 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 .76-.97l8-2a1 1 0 0 1 .48 0l8 2A1 1 0 0 1 20 6z"/><path d="m9 12 2 2 4-4"/></svg>
+                {% elsif block.settings.icon_type == 'mountain' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mountain"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></svg>
+                {% elsif block.settings.icon_type == 'droplet' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-droplets"><path d="M7 16.3c2.2 0 4-1.83 4-4.05 0-1.16-.57-2.26-1.71-3.19S7.29 6.75 7 5.3c-.29 1.45-1.14 2.84-2.29 3.76S3 11.09 3 12.25c0 2.22 1.8 4.05 4 4.05z"/><path d="M17 18.5c1.37 0 2.5-1.14 2.5-2.53 0-.72-.35-1.41-1.07-2s-1.64-1.41-1.83-2.31c-.18.9-.71 1.77-1.43 2.35s-1.07 1.13-1.07 1.85c0 1.39 1.13 2.53 2.5 2.53z"/></svg>
+                {% else %}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-leaf"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 3.5 2 5.5a7 7 0 0 1-7 7h-1.5"/><path d="M19 7c-3 1.5-5.5 3-8 8"/><path d="M14 10c-1.5 1.5-3 3.5-4 6"/></svg>
+                {% endif %}
+              {% endif %}
+            </div>
+            <h4 class="fs-5 fw-bold text-body-emphasis mb-3">{{ block.settings.title }}</h4>
+            <p class="fs-15px text-muted mb-0">{{ block.settings.text }}</p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  .trust-badge-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .trust-badge-card:hover {
+    transform: translateY(-5px);
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Trust Badges Row",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Custom Styling"
+    },
+    {
+      "type": "text",
+      "id": "margin_desktop",
+      "label": "Margin",
+      "default": "40px 0 40px 0"
+    },
+    {
+      "type": "text",
+      "id": "padding_desktop",
+      "label": "Padding",
+      "default": "20px 0 20px 0"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "badge",
+      "name": "Trust Badge",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon_type",
+          "label": "Default SVG Icon",
+          "options": [
+            { "value": "shield", "label": "Hygienically Shield" },
+            { "value": "mountain", "label": "Himalayas / Sourcing" },
+            { "value": "droplet", "label": "Mustard Oil / Pure" },
+            { "value": "leaf", "label": "Organic / No Chemicals" }
+          ],
+          "default": "shield"
+        },
+        {
+          "type": "image_picker",
+          "id": "custom_icon",
+          "label": "Custom Icon Image (Overrides default SVG)"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Badge Title",
+          "default": "Trust Claim"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Description Text",
+          "default": "Short detail about this claim."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trust Badges Row",
+      "blocks": [
+        {
+          "type": "badge",
+          "settings": {
+            "icon_type": "shield",
+            "title": "Hygienically Processed",
+            "text": "Prepared under strict hygiene and safety standards."
+          }
+        },
+        {
+          "type": "badge",
+          "settings": {
+            "icon_type": "mountain",
+            "title": "Sourced from Himalayas",
+            "text": "Grown in the pollution-free environment of the hills."
+          }
+        },
+        {
+          "type": "badge",
+          "settings": {
+            "icon_type": "droplet",
+            "title": "Cold-Pressed Mustard Oil",
+            "text": "100% natural, heart-healthy oils used for pickles."
+          }
+        },
+        {
+          "type": "badge",
+          "settings": {
+            "icon_type": "leaf",
+            "title": "No Chemicals Added",
+            "text": "Zero artificial preservatives, colors, or flavors."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

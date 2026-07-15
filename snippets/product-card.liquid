@@ -116,6 +116,20 @@
       <a class="text-decoration-none text-reset" href="{{ product.url }}">{{ product.title }}</a>
     </h4>
 
+    {%- if product.variants.size > 0 -%}
+      {%- assign weight_option = "" -%}
+      {%- for option in product.options_with_values -%}
+        {%- assign downcase_name = option.name | downcase -%}
+        {%- if downcase_name contains 'size' or downcase_name contains 'weight' or downcase_name contains 'pack' -%}
+          {%- assign weight_option = product.selected_or_first_available_variant.title -%}
+          {%- break -%}
+        {%- endif -%}
+      {%- endfor -%}
+      {%- if weight_option != "" -%}
+        <div class="product-weight-badge text-muted fs-13px mb-3">{{ weight_option }}</div>
+      {%- endif -%}
+    {%- endif -%}
+
     {% if show_rating %}
       <div class="d-flex align-items-center fs-12px justify-content-center">
         <!-- Placeholder rating implementation -->

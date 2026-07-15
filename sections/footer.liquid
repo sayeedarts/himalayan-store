@@ -70,11 +70,18 @@
 
 <div class="container container-xxl pt-10 pb-15">
   <div class="row align-items-center">
-    <div class="col-sm-12 col-md-6 col-lg-4 d-flex align-items-center order-2 order-lg-1 fs-6 mt-8 mt-lg-0">
-      <p class="mb-0">
+    <div class="col-sm-12 col-md-6 col-lg-4 d-flex align-items-start flex-column order-2 order-lg-1 fs-6 mt-8 mt-lg-0">
+      <p class="mb-2">
         © {{ shop.name }}
         {{ 'now' | date: '%Y' }}
       </p>
+      <div class="fssai-footer-info fs-13px text-light opacity-75 d-flex align-items-center flex-wrap gap-2">
+        <span>FSSAI Lic. No: [100XXXXXXXXXXX]</span>
+        <span>•</span>
+        <span>Sourced from the Himalayas</span>
+        <span>•</span>
+        <span>Made in India</span>
+      </div>
       {% if section.settings.show_social %}
         <ul class="list-inline fs-18px ms-6 mb-0">
           {% if settings.social_twitter_link != blank %}

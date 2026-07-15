@@ -1,0 +1,59 @@
+{
+  "sections": {
+    "main": {
+      "type": "page",
+      "settings": {}
+    },
+    "trust_badges": {
+      "type": "trust-badges",
+      "blocks": {
+        "badge_1": {
+          "type": "badge",
+          "settings": {
+            "icon_type": "shield",
+            "title": "Hygienically Processed",
+            "text": "Prepared under strict hygiene and safety standards."
+          }
+        },
+        "badge_2": {
+          "type": "badge",
+          "settings": {
+            "icon_type": "mountain",
+            "title": "Sourced from Himalayas",
+            "text": "Grown in the pollution-free environment of the hills."
+          }
+        },
+        "badge_3": {
+          "type": "badge",
+          "settings": {
+            "icon_type": "droplet",
+            "title": "Cold-Pressed Mustard Oil",
+            "text": "100% natural, heart-healthy oils used for pickles."
+          }
+        },
+        "badge_4": {
+          "type": "badge",
+          "settings": {
+            "icon_type": "leaf",
+            "title": "No Chemicals Added",
+            "text": "Zero artificial preservatives, colors, or flavors."
+          }
+        }
+      },
+      "block_order": [
+        "badge_1",
+        "badge_2",
+        "badge_3",
+        "badge_4"
+      ],
+      "settings": {
+        "margin_desktop": "40px 0 40px 0",
+        "padding_desktop": "20px 0 20px 0"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "trust_badges"
+  ]
+}

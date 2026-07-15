@@ -436,8 +436,8 @@
         const moneyFormat = '{{ shop.money_format }}';
 
         // Helper to format money
-        // Note: This is a simple replacer and might not handle all edge cases like {{amount_no_decimals}} if configured
-        // But for {{amount}} it usually works well.
+        // Note: This is a simple replacer and might not handle all edge cases like amount_no_decimals if configured
+        // But for amount it usually works well.
         const formatMoney = (cents, format) => {
           if (typeof cents == 'string') {
             cents = cents.replace('.', '');

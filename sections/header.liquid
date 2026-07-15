@@ -153,7 +153,8 @@
             </div>
 
             <a href="{{ routes.root_url }}" class="navbar-brand px-8 py-4 mx-auto">
-              assign logo = settings.logo assign logo_width = settings.logo_width -%}
+              {%- assign logo = settings.logo -%}
+              {%- assign logo_width = settings.logo_width -%}
               {% if logo != blank %}
                 {{
                   logo

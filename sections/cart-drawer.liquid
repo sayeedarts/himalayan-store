@@ -1,6 +1,6 @@
 <div id="shoppingCart" data-bs-scroll="false" class="offcanvas offcanvas-end cart-drawer">
   <div class="offcanvas-header fs-4">
-    <h4 class="offcanvas-title fw-semibold">Shopping Bag</h4>
+    <h4 class="offcanvas-title fw-semibold">Shopping Cart</h4>
     <button type="button" class="btn-close btn-close-bg-none" data-bs-dismiss="offcanvas" aria-label="Close">
       <svg class="icon icon-xmark">
         <use xlink:href="#icon-xmark"></use>
@@ -125,7 +125,7 @@
       <span class="cart-total fw-bold text-body-emphasis">{{ cart.total_price | money }}</span>
     </div>
     <a href="{{ routes.cart_url }}" class="btn btn-dark w-100 mb-7">View Cart</a>
-    <a href="checkout.html" class="btn btn-outline-dark w-100">Checkout</a>
+    <a href="/checkout" class="btn btn-outline-dark w-100">Checkout</a>
   </div>
 </div>
 

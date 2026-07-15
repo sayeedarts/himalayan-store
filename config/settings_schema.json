@@ -52,9 +52,15 @@
       },
       {
         "type": "font_picker",
-        "id": "type_primary_font",
-        "default": "work_sans_n4",
-        "label": "t:general.primary"
+        "id": "type_header_font",
+        "default": "outfit_n7",
+        "label": "Heading Font"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_body_font",
+        "default": "inter_n4",
+        "label": "Body Font"
       }
     ]
   },
@@ -95,14 +101,50 @@
       {
         "type": "color",
         "id": "background_color",
-        "default": "#FFFFFF",
+        "default": "#FDF8EF",
         "label": "t:labels.background"
       },
       {
         "type": "color",
         "id": "foreground_color",
-        "default": "#333333",
+        "default": "#1C1C1A",
         "label": "t:labels.foreground"
+      },
+      {
+        "type": "color",
+        "id": "primary_color",
+        "default": "#ED3237",
+        "label": "Primary Brand Color"
+      },
+      {
+        "type": "color",
+        "id": "secondary_color",
+        "default": "#C3983C",
+        "label": "Secondary Brand Color"
+      },
+      {
+        "type": "color",
+        "id": "accent_color",
+        "default": "#F4D469",
+        "label": "Accent Color"
+      },
+      {
+        "type": "color",
+        "id": "tertiary_color",
+        "default": "#6FA84B",
+        "label": "Tertiary/Natural Color"
+      },
+      {
+        "type": "color",
+        "id": "accent_blue_color",
+        "default": "#91D8F7",
+        "label": "Accent Blue Color"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "default": "#1C1C1A",
+        "label": "Body Text Color"
       },
       {
         "type": "range",

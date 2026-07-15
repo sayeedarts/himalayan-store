@@ -20,6 +20,8 @@
 
     {{ content_for_header }}
 
+    {% render 'css-variables' %}
+
     <!-- CSS -->
     {{ 'lightgallery-bundle.min.css' | asset_url | stylesheet_tag }}
     {{ 'all.min.css' | asset_url | stylesheet_tag }}

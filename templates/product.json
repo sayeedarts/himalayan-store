@@ -11,6 +11,34 @@
   "sections": {
     "main": {
       "type": "product",
+      "blocks": {
+        "ingredients": {
+          "type": "accordion",
+          "settings": {
+            "heading": "Ingredients",
+            "content": "<p>100% natural and clean ingredients, sourced directly from local farmers in the Himalayan valleys. Refer to product packaging for specific batch details.</p>"
+          }
+        },
+        "storage": {
+          "type": "accordion",
+          "settings": {
+            "heading": "Storage Instructions",
+            "content": "<p>Store in a cool, dry place. Keep away from direct sunlight. For pickles, ensure a layer of mustard oil covers the top to maintain natural preservation.</p>"
+          }
+        },
+        "why_himalayan": {
+          "type": "accordion",
+          "settings": {
+            "heading": "Why Himalayan Garden",
+            "content": "<ul><li>Hygienically Processed</li><li>Sourced from pristine Himalayan valleys</li><li>Prepared with Cold-Pressed Mustard Oil</li><li>No artificial preservatives or chemicals</li></ul>"
+          }
+        }
+      },
+      "block_order": [
+        "ingredients",
+        "storage",
+        "why_himalayan"
+      ],
       "settings": {}
     },
     "related-products": {

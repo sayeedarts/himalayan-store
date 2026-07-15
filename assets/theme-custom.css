@@ -1,19 +1,28 @@
 :root,
 [data-bs-theme="light"] {
-    --bs-nav-link-text-color: #000;
+    --bs-font-sans-serif: var(--font-body--family) !important;
+    --bs-body-font-family: var(--font-body--family) !important;
+    --bs-primary-font-family: var(--font-heading--family) !important;
+    --bs-secondary-font-family: var(--font-body--family) !important;
+
+    --bs-primary: var(--color-primary) !important;
+    --bs-secondary: var(--color-secondary) !important;
+    --bs-body-bg: var(--color-background) !important;
+    --bs-body-color: var(--color-text) !important;
+    --bs-nav-link-text-color: var(--color-text);
 }
 
 [data-bs-theme="dark"] {
-    --bs-body-bg: #352063;
-    --bs-nav-link-text-color: #fff;
+    --bs-body-bg: var(--color-background) !important;
+    --bs-nav-link-text-color: var(--color-text);
 }
 
 .btn-hover-bg-primary {
-    --bs-btn-hover-bg: #352063;
+    --bs-btn-hover-bg: var(--color-secondary);
 }
 
 .btn-hover-border-primary {
-    --bs-btn-hover-border-color: #352063;
+    --bs-btn-hover-border-color: var(--color-secondary);
 }
 
 
@@ -60,7 +69,7 @@ svg.icon.icon-magnifying-glass-light {
 }
 
 .main-header.navbar {
-    background: #ef5080;
+    background: var(--color-primary) !important;
 }
 
 .main-header.navbar .nav-link {
@@ -150,7 +159,7 @@ svg.icon.icon-magnifying-glass-light {
 }
 
 .badge-product-flash.on-new {
-    background-color: #352063;
+    background-color: var(--color-secondary);
 }
 
 /* Sticky Header Area */
@@ -164,7 +173,7 @@ svg.icon.icon-magnifying-glass-light {
 }
 
 footer.footer {
-    background: #bc8e49;
+    background: var(--color-secondary) !important;
     color: #fff;
 }
 
@@ -196,7 +205,7 @@ footer.footer .icon svg.icon-mobile {
 }
 
 .testimonials-section .bg-body-tertiary {
-    background-color: #ffd8e4 !important;
+    background-color: var(--color-background) !important;
 }
 
 .featured-collection-section .swiper-pagination {
@@ -213,6 +222,6 @@ footer.footer .icon svg.icon-mobile {
 .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
     width: 50px;
     height: 10px;
-    background-color: #ed4774;
+    background-color: var(--color-primary);
     border-radius: 10px;
 }

@@ -16,15 +16,15 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/hf_20260126_160240_3e863dd7-3aac-4f68-b356-31951f0fc650.jpg",
-            "show_content": false,
+            "show_content": true,
             "text_alignment": "text-start",
             "content_bg_color": "#ffffff",
             "content_bg_opacity": 70,
             "heading_color": "rgba(0,0,0,0)",
             "text_color": "rgba(0,0,0,0)",
-            "title": "Reveal The<br>Beauty of Skin",
-            "text": "Made using clean, non-toxic ingredients, our products are designed for everyone.",
-            "subtext": "Starting at $7.99",
+            "title": "Authentic Himalayan Flavors,<br>Traditionally Made",
+            "text": "Hand-processed pickles, fruit preserves, and organic superfoods sourced directly from the pristine hills.",
+            "subtext": "100% Natural & Organic",
             "button_label": "Shop Now",
             "button_link": "shopify://collections/all"
           }
@@ -40,10 +40,10 @@
             "content_bg_opacity": 100,
             "heading_color": "",
             "text_color": "",
-            "title": "A Signature of Sophistication",
-            "text": "Discover fragrances designed for those who demand excellence.",
-            "subtext": "Starting at $7.99",
-            "button_label": "Shop Now",
+            "title": "Pure Wellness from<br>the Himalayan Peaks",
+            "text": "Savor our curated range of organic millet flours, wellness teas, and natural jaggery powder.",
+            "subtext": "No Artificial Preservatives",
+            "button_label": "Discover More",
             "button_link": "shopify://collections/all"
           }
         }
@@ -63,6 +63,53 @@
         "margin_mobile": "",
         "padding_mobile": "",
         "section_bg_color": ""
+      }
+    },
+    "trust_badges": {
+      "type": "trust-badges",
+      "blocks": {
+        "badge_1": {
+          "type": "badge",
+          "settings": {
+            "icon_type": "shield",
+            "title": "Hygienically Processed",
+            "text": "Prepared under strict hygiene and safety standards."
+          }
+        },
+        "badge_2": {
+          "type": "badge",
+          "settings": {
+            "icon_type": "mountain",
+            "title": "Sourced from Himalayas",
+            "text": "Grown in the pollution-free environment of the hills."
+          }
+        },
+        "badge_3": {
+          "type": "badge",
+          "settings": {
+            "icon_type": "droplet",
+            "title": "Cold-Pressed Mustard Oil",
+            "text": "100% natural, heart-healthy oils used for pickles."
+          }
+        },
+        "badge_4": {
+          "type": "badge",
+          "settings": {
+            "icon_type": "leaf",
+            "title": "No Chemicals Added",
+            "text": "Zero artificial preservatives, colors, or flavors."
+          }
+        }
+      },
+      "block_order": [
+        "badge_1",
+        "badge_2",
+        "badge_3",
+        "badge_4"
+      ],
+      "settings": {
+        "margin_desktop": "40px 0 40px 0",
+        "padding_desktop": "20px 0 20px 0"
       }
     },
     "promotion_grid": {
@@ -115,73 +162,103 @@
     "featured_categories_XGn64L": {
       "type": "featured-categories",
       "blocks": {
-        "category_VpfhUx": {
+        "cat_1": {
           "type": "category",
           "settings": {
-            "collection": "floral",
-            "title": "",
+            "collection": "pickles",
+            "title": "Pickles",
             "count": "",
             "link": ""
           }
         },
-        "category_HVRVWN": {
+        "cat_2": {
           "type": "category",
           "settings": {
-            "collection": "dark-wood-textures-and-forest-light-copy",
-            "title": "",
+            "collection": "murabba-preserves",
+            "title": "Murabba & Preserves",
             "count": "",
             "link": ""
           }
         },
-        "category_WGLtCh": {
+        "cat_3": {
           "type": "category",
           "settings": {
-            "collection": "spicy-copy",
-            "title": "",
+            "collection": "atta-flours",
+            "title": "Atta & Flours",
             "count": "",
             "link": ""
           }
         },
-        "category_gPaUrx": {
+        "cat_4": {
           "type": "category",
           "settings": {
-            "collection": "oriental-copy",
-            "title": "",
+            "collection": "jaggery-salt",
+            "title": "Jaggery & Salt",
             "count": "",
             "link": ""
           }
         },
-        "category_EJ9QGX": {
+        "cat_5": {
           "type": "category",
           "settings": {
-            "collection": "floral-copy",
-            "title": "",
+            "collection": "vinegars",
+            "title": "Vinegars",
             "count": "",
             "link": ""
           }
         },
-        "category_nnrDnE": {
+        "cat_6": {
           "type": "category",
           "settings": {
-            "collection": "oud-copy",
-            "title": "Smokey",
-            "count": "3",
+            "collection": "seeds-trail-mix",
+            "title": "Seeds & Trail Mix",
+            "count": "",
+            "link": ""
+          }
+        },
+        "cat_7": {
+          "type": "category",
+          "settings": {
+            "collection": "fruit-crush",
+            "title": "Fruit Crush",
+            "count": "",
+            "link": ""
+          }
+        },
+        "cat_8": {
+          "type": "category",
+          "settings": {
+            "collection": "wellness-teas",
+            "title": "Wellness Teas",
+            "count": "",
+            "link": ""
+          }
+        },
+        "cat_9": {
+          "type": "category",
+          "settings": {
+            "collection": "amla-candy",
+            "title": "Amla Candy",
+            "count": "",
             "link": ""
           }
         }
       },
       "block_order": [
-        "category_VpfhUx",
-        "category_HVRVWN",
-        "category_WGLtCh",
-        "category_gPaUrx",
-        "category_EJ9QGX",
-        "category_nnrDnE"
+        "cat_1",
+        "cat_2",
+        "cat_3",
+        "cat_4",
+        "cat_5",
+        "cat_6",
+        "cat_7",
+        "cat_8",
+        "cat_9"
       ],
-      "name": "Featured Categories",
+      "name": "Shop by Category",
       "settings": {
-        "heading": "Our Picks for You",
-        "subheading": "Our products are designed for everyone.",
+        "heading": "Shop by Category",
+        "subheading": "Sourced from pristine Himalayan valleys, processed traditionally.",
         "margin_desktop": "",
         "padding_desktop": "",
         "margin_mobile": "",
@@ -362,6 +439,50 @@
         "section_bg_color": ""
       }
     },
+    "himalayan_story": {
+      "type": "himalayan-story",
+      "blocks": {
+        "story_1": {
+          "type": "story_beat",
+          "settings": {
+            "title": "Hand-picked in the hills",
+            "text": "<p>Our ingredients are carefully gathered at their peak potency by local farmers who understand the rhythm of the mountains.</p>"
+          }
+        },
+        "story_2": {
+          "type": "story_beat",
+          "settings": {
+            "title": "Traditional Recipes, No Shortcuts",
+            "text": "<p>We preserve our harvests using traditional solar-drying and fermentation techniques passed down through generations.</p>"
+          }
+        },
+        "story_3": {
+          "type": "story_beat",
+          "settings": {
+            "title": "Hygienically Processed",
+            "text": "<p>Every batch is washed, processed, and packed in state-of-the-art sterile facilities to retain natural purity and freshness.</p>"
+          }
+        },
+        "story_4": {
+          "type": "story_beat",
+          "settings": {
+            "title": "Delivered Fresh to You",
+            "text": "<p>From mountain peak to your doorstep, we preserve nutrients and flavor so you get the genuine taste of the Himalayas.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "story_1",
+        "story_2",
+        "story_3",
+        "story_4"
+      ],
+      "settings": {
+        "subheading": "Our Sourcing & Process",
+        "heading": "The Himalayan Story",
+        "text": "Bringing the pure goodness of high-altitude valleys straight to your table."
+      }
+    },
     "testimonials": {
       "type": "testimonials",
       "blocks": {
@@ -412,7 +533,7 @@
       ],
       "settings": {
         "heading": "Loved by our Community",
-        "subheading": "Fragnance that earns your trust, one review at a time",
+        "subheading": "Quality that earns your trust, one review at a time",
         "heading_color": "",
         "subheading_color": "",
         "heading_size": 48,
@@ -473,6 +594,7 @@
   },
   "order": [
     "hero",
+    "trust_badges",
     "promotion_grid",
     "featured_categories_XGn64L",
     "featured_collection",
@@ -482,6 +604,7 @@
     "featured_collection_8pKE44",
     "global_heading_3YNMhF",
     "icon_box_grid",
+    "himalayan_story",
     "testimonials",
     "image_box_grid"
   ]
