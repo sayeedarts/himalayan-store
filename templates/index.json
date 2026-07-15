@@ -259,7 +259,7 @@
       "settings": {
         "title": "Our Bestsellers",
         "collection": "green-tea",
-        "limit": 8,
+        "limit": 6,
         "link_text": "Shop All Products",
         "link_url": "shopify://collections/all",
         "show_rating": true,
@@ -312,7 +312,7 @@
       "settings": {
         "title": "Trending Now",
         "collection": "green-tea",
-        "limit": 8,
+        "limit": 6,
         "link_text": "Shop All Products",
         "link_url": "shopify://collections/all",
         "show_rating": true,
@@ -470,6 +470,7 @@
     },
     "global_heading_3YNMhF": {
       "type": "global-heading",
+      "disabled": true,
       "name": "Global Heading",
       "settings": {
         "heading": "Why Himalaya Garden",
@@ -524,7 +525,6 @@
         "icon_3",
         "icon_box_3APfcT"
       ],
-      "disabled": true,
       "settings": {
         "columns_desktop": 4,
         "margin_desktop": "",
