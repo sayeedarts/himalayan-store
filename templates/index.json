@@ -53,9 +53,9 @@
       ],
       "settings": {
         "autoplay": true,
-        "slider_max_height": "800px",
+        "slider_max_height": "600px",
         "page_width": "full_width",
-        "speed": 1000,
+        "speed": 2500,
         "show_dots": true,
         "show_arrows": true,
         "margin_desktop": "",
