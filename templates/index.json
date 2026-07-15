@@ -71,7 +71,7 @@
       ],
       "settings": {
         "autoplay": true,
-        "slider_max_height": "600px",
+        "slider_max_height": "800px",
         "page_width": "full_width",
         "speed": 2500,
         "show_dots": true,
