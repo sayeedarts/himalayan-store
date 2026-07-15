@@ -15,25 +15,23 @@
         "slide_1": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/hf_20260126_160240_3e863dd7-3aac-4f68-b356-31951f0fc650.jpg",
+            "image": "shopify://shop_images/Gemini_Generated_Image_aj3ad5aj3ad5aj3a.png",
             "show_content": true,
             "text_alignment": "text-start",
             "content_bg_color": "#ffffff",
             "content_bg_opacity": 70,
             "heading_color": "rgba(0,0,0,0)",
             "text_color": "rgba(0,0,0,0)",
-            "title": "Authentic Himalayan Flavors,<br>Traditionally Made",
-            "text": "Hand-processed pickles, fruit preserves, and organic superfoods sourced directly from the pristine hills.",
-            "subtext": "100% Natural & Organic",
-            "button_label": "Shop Now",
+            "title": "",
+            "text": "",
+            "subtext": "",
+            "button_label": "",
             "button_link": "shopify://collections/all"
           }
         },
         "slide_2": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/hf_20260126_164608_f1401f6f-89fd-43cb-b846-d549a2b81a0b.jpg",
-            "image_dark": "shopify://shop_images/upscalemedia-transformed.png",
             "show_content": true,
             "text_alignment": "text-start",
             "content_bg_color": "rgba(0,0,0,0)",
@@ -58,6 +56,7 @@
         "page_width": "full_width",
         "speed": 1000,
         "show_dots": true,
+        "show_arrows": true,
         "margin_desktop": "",
         "padding_desktop": "",
         "margin_mobile": "",
@@ -118,7 +117,6 @@
         "promo_1": {
           "type": "promotion",
           "settings": {
-            "image": "shopify://shop_images/hf_20260127_154052_5c86a642-c580-4da2-bcad-e4a4c974e0c8.png",
             "title": "",
             "text": "",
             "button_label": "Shop Now",
@@ -128,7 +126,6 @@
         "promo_2": {
           "type": "promotion",
           "settings": {
-            "image": "shopify://shop_images/hf_20260127_154040_2fdcb30a-8677-4704-a74a-cb03f6523ea6.jpg",
             "title": "",
             "text": "",
             "button_label": "Discover Now",
@@ -138,7 +135,6 @@
         "promo_3": {
           "type": "promotion",
           "settings": {
-            "image": "shopify://shop_images/hf_20260127_155351_51b7a5b7-07a5-4f66-b0e7-b621e8d5b2e2.jpg",
             "title": "",
             "text": "",
             "button_label": "Discover Now",
@@ -288,7 +284,6 @@
         "image_box_cPXF6Y": {
           "type": "image_box",
           "settings": {
-            "image": "shopify://shop_images/unwatermarked_Gemini_Generated_Image_90ztxx90ztxx90zt.png",
             "heading": "",
             "link_text": "",
             "link": "#"
@@ -297,7 +292,6 @@
         "image_box_W9E7Uk": {
           "type": "image_box",
           "settings": {
-            "image": "shopify://shop_images/PixelBin-AI-Editor-1769769120608.png",
             "heading": "",
             "link_text": "",
             "link": "#"
@@ -339,8 +333,6 @@
       "type": "offer-banner",
       "name": "Offer Banner",
       "settings": {
-        "image_1": "shopify://shop_images/hf_20260129_135523_89528286-9b15-4d34-bbe0-d2f9cf4554d2.png",
-        "image_2": "shopify://shop_images/hf_20260129_140432_2f9aaff0-1250-4cb9-afe2-d452480a5e30.png",
         "subheading": "SPECIAL OFFER",
         "badge": "-20%",
         "heading": "Bergamot, Grapefruit, aromatic spicy, Sandalwood Musky",
@@ -394,7 +386,6 @@
         "icon_1": {
           "type": "icon_box",
           "settings": {
-            "image": "shopify://shop_images/icon-box-01.svg",
             "title": "Free Shipping",
             "text": "Free Shipping for orders over 499"
           }
@@ -402,7 +393,6 @@
         "icon_2": {
           "type": "icon_box",
           "settings": {
-            "image": "shopify://shop_images/icon-box-02.svg",
             "title": "Returns",
             "text": "Within 30 days for an exchange."
           }
@@ -410,7 +400,6 @@
         "icon_3": {
           "type": "icon_box",
           "settings": {
-            "image": "shopify://shop_images/icon-box-03.svg",
             "title": "Online Support",
             "text": "24 hours a day, 7 days a week"
           }
@@ -418,7 +407,6 @@
         "icon_box_3APfcT": {
           "type": "icon_box",
           "settings": {
-            "image": "shopify://shop_images/icon-box-04.svg",
             "title": "Flexible Payment",
             "text": "Pay with Multiple Credit Cards"
           }
@@ -551,7 +539,6 @@
         "img_1": {
           "type": "image_box",
           "settings": {
-            "image": "shopify://shop_images/store.jpg",
             "heading": "Find a Store",
             "link_text": "Our Store",
             "link": "shopify://pages/store"
@@ -560,7 +547,6 @@
         "img_2": {
           "type": "image_box",
           "settings": {
-            "image": "shopify://shop_images/unwatermarked_Gemini_Generated_Image_ibrqbgibrqbgibrq.png",
             "heading": "From Our Blog",
             "link_text": "Read more",
             "link": "shopify://blogs/news"
@@ -569,7 +555,6 @@
         "img_3": {
           "type": "image_box",
           "settings": {
-            "image": "shopify://shop_images/unwatermarked_Gemini_Generated_Image_qh08y3qh08y3qh08.png",
             "heading": "Our Story",
             "link_text": "View More",
             "link": "shopify://pages/about-us"
