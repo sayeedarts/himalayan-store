@@ -15,7 +15,7 @@
         "slide_1": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/Gemini_Generated_Image_aj3ad5aj3ad5aj3a.png",
+            "image": "shopify://shop_images/banner-slide_1.webp",
             "show_content": false,
             "text_alignment": "text-start",
             "content_bg_color": "#ffffff",
@@ -32,7 +32,7 @@
         "slide_2": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/Gemini_Generated_Image_p7smmxp7smmxp7sm.png",
+            "image": "shopify://shop_images/banner-slide_5.webp",
             "show_content": false,
             "text_alignment": "text-start",
             "content_bg_color": "rgba(0,0,0,0)",
@@ -49,7 +49,41 @@
         "slide_C7MVt4": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/Gemini_Generated_Image_3sdtz73sdtz73sdt.png",
+            "image": "shopify://shop_images/banner-slide_1.webp",
+            "show_content": false,
+            "text_alignment": "text-start",
+            "content_bg_color": "rgba(0,0,0,0)",
+            "content_bg_opacity": 100,
+            "heading_color": "",
+            "text_color": "",
+            "title": "",
+            "text": "",
+            "subtext": "",
+            "button_label": "",
+            "button_link": "shopify://collections/all"
+          }
+        },
+        "slide_gBtGFJ": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/banner-slide_2.webp",
+            "show_content": false,
+            "text_alignment": "text-start",
+            "content_bg_color": "rgba(0,0,0,0)",
+            "content_bg_opacity": 100,
+            "heading_color": "",
+            "text_color": "",
+            "title": "",
+            "text": "",
+            "subtext": "",
+            "button_label": "",
+            "button_link": "shopify://collections/all"
+          }
+        },
+        "slide_tn9neg": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/banner-slide_7.webp",
             "show_content": false,
             "text_alignment": "text-start",
             "content_bg_color": "rgba(0,0,0,0)",
@@ -67,7 +101,9 @@
       "block_order": [
         "slide_1",
         "slide_2",
-        "slide_C7MVt4"
+        "slide_C7MVt4",
+        "slide_gBtGFJ",
+        "slide_tn9neg"
       ],
       "settings": {
         "autoplay": true,
