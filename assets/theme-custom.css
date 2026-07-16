@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
-
 :root,
 [data-bs-theme="light"] {
     --bs-font-sans-serif: var(--font-body--family) !important;
@@ -29,7 +27,7 @@ h2,
 .h2,
 h1,
 .h1 {
-    font-family: var(---bs-heading-font) !important;
+    font-family: var(--bs-heading-font) !important;
 }
 
 
@@ -227,7 +225,7 @@ svg.icon.icon-magnifying-glass-light {
 
 .featured-categories-section h2 {
     color: #fff;
-    font-family: var(---bs-heading-font) !important;
+    font-family: var(--bs-heading-font) !important;
 }
 
 .featured-categories-section .card {
