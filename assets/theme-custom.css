@@ -11,7 +11,8 @@
     --bs-body-bg: var(--color-background) !important;
     --bs-body-color: var(--color-text) !important;
     --bs-nav-link-text-color: var(--color-text);
-    --bs-heading-font: "Cinzel", serif;
+    /* --bs-heading-font: "Cinzel", serif; */
+    --bs-heading-font: "Playfair Display", serif;
 }
 
 
