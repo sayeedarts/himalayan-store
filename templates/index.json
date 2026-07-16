@@ -184,7 +184,7 @@
           "type": "category",
           "settings": {
             "collection": "amla-candy-murabba",
-            "title": "Pickles",
+            "title": "",
             "count": "",
             "link": ""
           }
@@ -192,8 +192,8 @@
         "cat_2": {
           "type": "category",
           "settings": {
-            "collection": "automated-collection",
-            "title": "Murabba & Preserves",
+            "collection": "crushes",
+            "title": "",
             "count": "",
             "link": ""
           }
@@ -201,8 +201,8 @@
         "cat_3": {
           "type": "category",
           "settings": {
-            "collection": "green-tea",
-            "title": "Atta & Flours",
+            "collection": "wellness-tea",
+            "title": "",
             "count": "",
             "link": ""
           }
@@ -210,8 +210,8 @@
         "cat_4": {
           "type": "category",
           "settings": {
-            "collection": "flour",
-            "title": "Jaggery & Salt",
+            "collection": "jaggery-salt",
+            "title": "",
             "count": "",
             "link": ""
           }
@@ -219,8 +219,8 @@
         "cat_5": {
           "type": "category",
           "settings": {
-            "collection": "green-tea",
-            "title": "Vinegars",
+            "collection": "vinegar",
+            "title": "",
             "count": "",
             "link": ""
           }
@@ -228,7 +228,7 @@
         "cat_6": {
           "type": "category",
           "settings": {
-            "collection": "green-tea",
+            "collection": "seeds",
             "title": "Seeds & Trail Mix",
             "count": "",
             "link": ""
