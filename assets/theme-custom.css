@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
 :root,
 [data-bs-theme="light"] {
     --bs-font-sans-serif: var(--font-body--family) !important;
@@ -11,8 +13,25 @@
     --bs-body-bg: var(--color-background) !important;
     --bs-body-color: var(--color-text) !important;
     --bs-nav-link-text-color: var(--color-text);
-
+    --bs-heading-font: "Cinzel", serif;
 }
+
+
+h6,
+.h6,
+h5,
+.h5,
+h4,
+.h4,
+h3,
+.h3,
+h2,
+.h2,
+h1,
+.h1 {
+    font-family: var(---bs-heading-font) !important;
+}
+
 
 [data-bs-theme="dark"] {
     --bs-body-bg: var(--color-background) !important;
@@ -208,6 +227,7 @@ svg.icon.icon-magnifying-glass-light {
 
 .featured-categories-section h2 {
     color: #fff;
+    font-family: var(---bs-heading-font) !important;
 }
 
 .featured-categories-section .card {
