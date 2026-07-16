@@ -24,7 +24,7 @@
         assign item_image = block.settings.image | default: collection.featured_image
         assign item_image_dark = block.settings.image_dark | default: item_image
       %}
-      <div class="col-lg-4 col-md-4 col-6 mb-10" {{ block.shopify_attributes }}>
+      <div class="col-lg-2 col-md-2 col-6" {{ block.shopify_attributes }}>
         <div class="card border-0 fw-semibold">
           <a
             href="{{ item_link }}"

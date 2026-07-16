@@ -211,30 +211,33 @@ svg.icon.icon-magnifying-glass-light {
 }
 
 .featured-categories-section .card {
-    background: none;
+    background: #fff;
+    border-radius: 25px;
+    padding: 25px;
 }
 
 .featured-categories-section .card .rounded-circle {
-    border-radius: 25px !important;
+    border-radius: 0px !important;
 }
 
 .featured-categories-section .card .rounded-circle img {
-    border-radius: 25px !important;
+    border-radius: 0px !important;
 }
 
 .featured-categories-section .card .image-box-1 {
     max-width: 100% !important;
-    margin-bottom: 15px;
+    margin-bottom: 0px;
 }
 
 .featured-categories-section .card .card-body {
     background: #fff;
     border-radius: 20px;
-    padding: 25px !important;
+    padding: 0px !important;
 }
 
 .featured-categories-section .card .card-body h4 {
     margin: 0px;
+    font-size: 1rem !important;
 }
 
 
