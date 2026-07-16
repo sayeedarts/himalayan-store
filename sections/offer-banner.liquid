@@ -2,7 +2,7 @@
 <section class="pb-lg-17 pb-16 pt-16 mt-16 countdown-banner-section">
   <div class="container container-xxl">
     <div class="row align-items-center">
-      <div class="col-lg-3 col-5" data-animate="fadeInUp">
+      <div class="col-lg-3 col-5 image-section" data-animate="fadeInUp">
         {% if section.settings.image_1 != blank %}
           {{
             section.settings.image_1
@@ -19,7 +19,7 @@
           {{ 'image' | placeholder_svg_tag: 'img-fluid' }}
         {% endif %}
       </div>
-      <div class="col-lg-4 col-7" data-animate="fadeInUp">
+      <div class="col-lg-4 col-7 image-section" data-animate="fadeInUp">
         {% if section.settings.image_2 != blank %}
           {{
             section.settings.image_2
@@ -36,7 +36,7 @@
           {{ 'image' | placeholder_svg_tag: 'img-fluid' }}
         {% endif %}
       </div>
-      <div class="col-lg-5 col-12 pt-lg-0 pt-14 ps-xxl-21" data-animate="fadeInUp">
+      <div class="col-lg-5 col-12 text-section" data-animate="fadeInUp">
         <div class="text-left">
           {% if section.settings.subheading != blank %}
             <p class="fs-15px mb-6 ls-1 text-body-emphasis fw-semibold">
@@ -57,7 +57,7 @@
         {% if section.settings.button_label != blank %}
           <a
             href="{{ section.settings.button_link }}"
-            class="mt-11 btn btn-dark btn-hover-border-primary btn-hover-bg-primary shadow"
+            class="mt-3 btn btn-dark btn-hover-border-primary btn-hover-bg-primary shadow"
           >
             {{- section.settings.button_label -}}
           </a>

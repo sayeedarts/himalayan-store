@@ -103,7 +103,13 @@
     </div>
   </figure>
   <div class="card-body text-center p-0">
-    <span class="d-flex align-items-center price text-body-emphasis fw-bold justify-content-center mb-3 fs-6">
+
+   <h4 class="product-title card-title text-primary-hover text-body-emphasis fw-bold fs-6 mb-3">
+      <a class="text-decoration-none text-reset" href="{{ product.url }}">{{ product.title }}</a>
+    </h4>
+
+
+    <span class="d-flex align-items-center price text-body-emphasis justify-content-center mb-3 fs-6 product-price">
       {% if product.compare_at_price > product.price %}
         <del class="text-body fw-500 me-4 fs-13px">{{ product.compare_at_price | money }}</del>
         <ins class="text-decoration-none">{{ product.price | money }}</ins>
@@ -112,9 +118,7 @@
       {% endif %}
     </span>
 
-    <h4 class="product-title card-title text-primary-hover text-body-emphasis fs-15px fw-500 mb-3">
-      <a class="text-decoration-none text-reset" href="{{ product.url }}">{{ product.title }}</a>
-    </h4>
+   
 
     {%- if product.variants.size > 0 -%}
       {%- assign weight_option = "" -%}
